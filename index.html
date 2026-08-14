@@ -1,1148 +1,1264 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>𝐙𝐄𝐍𝟕𝟕𝟕 // 輝く時</title>
-  <meta name="description" content="ZEN777 — Community, ZenBot, Report, Collaborazioni e Shop.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #040404;
-      --bg-soft: #090909;
-      --card: rgba(14,14,14,.78);
-      --red: #e00000;
-      --red-bright: #ff2020;
-      --white: #fff;
-      --muted: #929292;
-      --border: rgba(255,255,255,.08);
-      --red-border: rgba(224,0,0,.35);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background:
-        radial-gradient(circle at 50% -10%, rgba(224,0,0,.16), transparent 32%),
-        radial-gradient(circle at 90% 40%, rgba(224,0,0,.05), transparent 25%),
-        var(--bg);
-      color: var(--white);
-      font-family: "Space Grotesk", Arial, sans-serif;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
-      background-size: 55px 55px;
-      mask-image: linear-gradient(to bottom, black, transparent 80%);
-      z-index: -2;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* NAVBAR */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(4,4,4,.72);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav {
-      max-width: 1250px;
-      height: 74px;
-      margin: auto;
-      padding: 0 25px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: .4px;
-      white-space: nowrap;
-    }
-
-    .logo span {
-      color: var(--red);
-    }
-
-    .links {
-      display: flex;
-      gap: 25px;
-      align-items: center;
-    }
-
-    .links a {
-      color: #aaa;
-      font-size: 13px;
-      transition: .25s;
-    }
-
-    .links a:hover {
-      color: #fff;
-    }
-
-    .nav-button {
-      background: var(--red);
-      padding: 11px 17px;
-      border-radius: 9px;
-      font-size: 13px;
-      font-weight: 700;
-      transition: .25s;
-    }
-
-    .nav-button:hover {
-      background: var(--red-bright);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(224,0,0,.25);
-    }
-
-    /* GLOBAL */
-
-    section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 105px 25px;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .section-title small {
-      color: #ff3b3b;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 3px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(32px, 5vw, 52px);
-      margin-top: 12px;
-      letter-spacing: -1.5px;
-    }
-
-    .section-title p {
-      color: var(--muted);
-      max-width: 600px;
-      margin: 15px auto 0;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    /* HERO */
-
-    .hero {
-      max-width: 1250px;
-      min-height: calc(100vh - 74px);
-      margin: auto;
-      padding: 70px 25px 100px;
-
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 65px;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      padding: 8px 13px;
-      border: 1px solid var(--red-border);
-      border-radius: 999px;
-      background: rgba(224,0,0,.07);
-
-      color: #ff6464;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 23px;
-    }
-
-    .badge::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--red);
-      box-shadow: 0 0 12px var(--red);
-    }
-
-    .hero h1 {
-      font-size: clamp(55px, 8vw, 105px);
-      line-height: .9;
-      letter-spacing: -5px;
-      font-weight: 700;
-    }
-
-    .hero h1 span {
-      display: block;
-      color: var(--red);
-    }
-
-    .hero-subtitle {
-      margin-top: 25px;
-      color: #d0d0d0;
-      font-size: 17px;
-      line-height: 1.7;
-      max-width: 590px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 13px 20px;
-      border-radius: 9px;
-
-      border: 1px solid var(--border);
-
-      font-size: 13px;
-      font-weight: 700;
-
-      transition: .25s;
-    }
-
-    .button:hover {
-      transform: translateY(-3px);
-    }
-
-    .button-red {
-      background: var(--red);
-      border-color: var(--red);
-    }
-
-    .button-red:hover {
-      background: var(--red-bright);
-      box-shadow: 0 12px 35px rgba(224,0,0,.22);
-    }
-
-    .button-dark {
-      background: rgba(255,255,255,.035);
-    }
-
-    .button-dark:hover {
-      background: rgba(255,255,255,.07);
-    }
-
-    /* HERO IMAGE */
-
-    .hero-visual {
-      position: relative;
-    }
-
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      inset: 15%;
-      background: rgba(224,0,0,.16);
-      filter: blur(90px);
-      z-index: -1;
-    }
-
-    .hero-visual img {
-      display: block;
-      width: 100%;
-      max-width: 590px;
-      margin: auto;
-
-      border-radius: 25px;
-      border: 1px solid var(--border);
-
-      box-shadow:
-        0 30px 100px rgba(0,0,0,.65),
-        0 0 70px rgba(224,0,0,.08);
-
-      transition: .4s;
-    }
-
-    .hero-visual img:hover {
-      transform: translateY(-6px) scale(1.01);
-      border-color: var(--red-border);
-    }
-
-    /* SERVICES */
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .card {
-      position: relative;
-      overflow: hidden;
-
-      min-height: 225px;
-      padding: 25px;
-
-      border-radius: 17px;
-      border: 1px solid var(--border);
-
-      background:
-        linear-gradient(145deg, rgba(20,20,20,.9), rgba(7,7,7,.9));
-
-      transition: .3s;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      top: -70px;
-      right: -70px;
-
-      background: rgba(224,0,0,.13);
-      filter: blur(35px);
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: var(--red-border);
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
-    }
-
-    .icon {
-      font-size: 27px;
-      margin-bottom: 25px;
-    }
-
-    .card h3 {
-      font-size: 19px;
-      margin-bottom: 9px;
-    }
-
-    .card p {
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 13px;
-    }
-
-    .card-link {
-      display: inline-block;
-      margin-top: 22px;
-      color: #ff4545;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .5px;
-    }
-
-    /* FEATURE */
-
-    .feature {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 55px;
-      align-items: center;
-    }
-
-    .feature-image {
-      background: #080808;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .feature-image img {
-      width: 100%;
-      display: block;
-    }
-
-    .feature-info small {
-      color: var(--red-bright);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-
-    .feature-info h2 {
-      font-size: clamp(34px, 5vw, 55px);
-      line-height: 1;
-      margin: 12px 0 18px;
-      letter-spacing: -2px;
-    }
-
-    .feature-info p {
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 15px;
-      margin-bottom: 25px;
-    }
-
-    /* REPORT / SPONSOR */
-
-    .visual-card {
-      max-width: 720px;
-      margin: auto;
-
-      padding: 12px;
-
-      background: rgba(10,10,10,.85);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-
-      box-shadow: 0 20px 70px rgba(0,0,0,.35);
-    }
-
-    .visual-card img {
-      display: block;
-      width: 100%;
-      max-height: 360px;
-      object-fit: contain;
-      border-radius: 13px;
-    }
-
-    .section-button {
-      text-align: center;
-      margin-top: 25px;
-    }
-
-    /* STAFF */
-
-    .staff-grid {
-      max-width: 800px;
-      margin: auto;
-
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .staff-card {
-      padding: 18px;
-
-      background: rgba(12,12,12,.85);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-
-      display: flex;
-      align-items: center;
-      gap: 17px;
-
-      transition: .3s;
-    }
-
-    .staff-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--red-border);
-    }
-
-    .staff-card img {
-      width: 76px;
-      height: 76px;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-    }
-
-    .staff-role {
-      color: var(--red-bright);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 7px;
-    }
-
-    .staff-name {
-      font-size: 14px;
-      line-height: 1.4;
-    }
-
-    /* COMMUNITY */
-
-    .community {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .community-card {
-      padding: 25px;
-
-      border-radius: 17px;
-      background: rgba(11,11,11,.85);
-      border: 1px solid var(--border);
-
-      transition: .25s;
-    }
-
-    .community-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--red-border);
-    }
-
-    .community-card.main {
-      border-color: var(--red-border);
-      box-shadow: 0 0 40px rgba(224,0,0,.06);
-    }
-
-    .main-label {
-      color: #ff4545;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-
-    .community-card h3 {
-      margin: 10px 0 7px;
-      font-size: 20px;
-    }
-
-    .community-card p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    /* FOOTER */
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 35px 25px;
-      text-align: center;
-      color: #555;
-      font-size: 12px;
-    }
-
-    footer strong {
-      color: #999;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 950px) {
-
-      .links {
-        display: none;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding-top: 80px;
-      }
-
-      .hero-subtitle {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-buttons {
-        justify-content: center;
-      }
-
-      .hero h1 {
-        letter-spacing: -3px;
-      }
-
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .feature {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 650px) {
-
-      section {
-        padding: 75px 18px;
-      }
-
-      .nav {
-        padding: 0 18px;
-      }
-
-      .nav-button {
-        padding: 9px 12px;
-        font-size: 11px;
-      }
-
-      .logo {
-        font-size: 14px;
-      }
-
-      .hero {
-        padding-left: 18px;
-        padding-right: 18px;
-        gap: 40px;
-      }
-
-      .hero h1 {
-        font-size: 55px;
-        letter-spacing: -3px;
-      }
-
-      .hero-subtitle {
-        font-size: 15px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .staff-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .community {
-        grid-template-columns: 1fr;
-      }
-
-      .visual-card {
-        padding: 8px;
-      }
-
-      .visual-card img {
-        max-height: 250px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ZEN777 // 輝く時</title>
+<meta name="description" content="ZEN777 — Community, ZenBot, Report, Sponsor e Shop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#040404;
+  --bg2:#080808;
+  --card:#0d0d0d;
+  --card2:#111;
+  --red:#e00000;
+  --red2:#ff2424;
+  --white:#fff;
+  --gray:#999;
+  --border:rgba(255,255,255,.09);
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+html{
+  scroll-behavior:smooth;
+}
+body{
+  background:
+    radial-gradient(circle at 50% -15%,rgba(224,0,0,.18),transparent 32%),
+    var(--bg);
+  color:var(--white);
+  font-family:"Space Grotesk",Arial,sans-serif;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+  background-size:55px 55px;
+  z-index:-1;
+}
+a{
+  color:inherit;
+  text-decoration:none;
+}
+button,input,select,textarea{
+  font:inherit;
+}
+/* NAV */
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(4,4,4,.78);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav{
+  max-width:1250px;
+  height:72px;
+  margin:auto;
+  padding:0 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  font-weight:700;
+  font-size:17px;
+  white-space:nowrap;
+}
+.logo span{
+  color:var(--red);
+}
+.nav-links{
+  display:flex;
+  gap:22px;
+  align-items:center;
+}
+.nav-links a{
+  color:#aaa;
+  font-size:13px;
+  transition:.2s;
+}
+.nav-links a:hover,
+.nav-links a.active{
+  color:#fff;
+}
+.nav-button{
+  padding:10px 15px;
+  border-radius:8px;
+  background:var(--red);
+  font-size:12px;
+  font-weight:700;
+}
+/* MOBILE NAV */
+.mobile-menu{
+  display:none;
+  border:1px solid var(--border);
+  background:#0c0c0c;
+  color:#fff;
+  padding:9px 12px;
+  border-radius:8px;
+}
+/* PAGES */
+.page{
+  display:none;
+  min-height:calc(100vh - 72px);
+}
+.page.active{
+  display:block;
+}
+/* GENERAL */
+.container{
+  width:min(1180px,calc(100% - 40px));
+  margin:auto;
+}
+section{
+  padding:95px 0;
+}
+.section-title{
+  text-align:center;
+  margin-bottom:45px;
+}
+.section-title small{
+  color:#ff4141;
+  letter-spacing:3px;
+  font-size:10px;
+  font-weight:700;
+}
+.section-title h2{
+  font-size:clamp(32px,5vw,55px);
+  line-height:1;
+  margin-top:12px;
+  letter-spacing:-2px;
+}
+.section-title p{
+  max-width:620px;
+  margin:16px auto 0;
+  color:var(--gray);
+  line-height:1.7;
+  font-size:14px;
+}
+/* BUTTONS */
+.button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:13px 19px;
+  border-radius:9px;
+  border:1px solid var(--border);
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.25s;
+}
+.button:hover{
+  transform:translateY(-3px);
+}
+.button-red{
+  background:var(--red);
+  border-color:var(--red);
+}
+.button-red:hover{
+  background:var(--red2);
+  box-shadow:0 10px 35px rgba(224,0,0,.2);
+}
+.button-dark{
+  background:#101010;
+}
+/* HERO */
+.hero{
+  min-height:calc(100vh - 72px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+  padding:65px 0 90px;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 13px;
+  border:1px solid rgba(224,0,0,.35);
+  border-radius:999px;
+  background:rgba(224,0,0,.06);
+  color:#ff5b5b;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+.badge i{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--red);
+  box-shadow:0 0 12px var(--red);
+}
+.hero h1{
+  margin-top:22px;
+  font-size:clamp(58px,8vw,105px);
+  line-height:.9;
+  letter-spacing:-5px;
+}
+.hero h1 span{
+  display:block;
+  color:var(--red);
+}
+.hero p{
+  color:#aaa;
+  max-width:580px;
+  margin-top:25px;
+  line-height:1.75;
+  font-size:16px;
+}
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+.hero-image{
+  position:relative;
+}
+.hero-image:before{
+  content:"";
+  position:absolute;
+  inset:15%;
+  background:rgba(224,0,0,.18);
+  filter:blur(80px);
+  z-index:-1;
+}
+.hero-image img{
+  width:100%;
+  max-height:570px;
+  object-fit:contain;
+  display:block;
+  border-radius:22px;
+  border:1px solid var(--border);
+  box-shadow:0 30px 90px rgba(0,0,0,.55);
+}
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+.card{
+  padding:24px;
+  min-height:220px;
+  border:1px solid var(--border);
+  border-radius:17px;
+  background:linear-gradient(145deg,#111,#080808);
+  transition:.25s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(224,0,0,.4);
+}
+.icon{
+  font-size:27px;
+  margin-bottom:22px;
+}
+.card h3{
+  font-size:19px;
+  margin-bottom:8px;
+}
+.card p{
+  color:var(--gray);
+  line-height:1.6;
+  font-size:13px;
+}
+.card-link{
+  display:block;
+  color:#ff4444;
+  font-size:10px;
+  font-weight:700;
+  margin-top:22px;
+  letter-spacing:.5px;
+}
+/* FEATURE */
+.feature{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:55px;
+  align-items:center;
+}
+.feature-image{
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid var(--border);
+  background:#090909;
+}
+.feature-image img{
+  width:100%;
+  display:block;
+  max-height:500px;
+  object-fit:contain;
+}
+.feature-info small{
+  color:#ff4141;
+  letter-spacing:2px;
+  font-size:10px;
+  font-weight:700;
+}
+.feature-info h2{
+  font-size:clamp(34px,5vw,55px);
+  line-height:1;
+  margin:12px 0 18px;
+  letter-spacing:-2px;
+}
+.feature-info p{
+  color:var(--gray);
+  line-height:1.75;
+  font-size:15px;
+  margin-bottom:25px;
+}
+/* VISUALS */
+.visual{
+  width:min(700px,100%);
+  margin:auto;
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:#090909;
+}
+.visual img{
+  width:100%;
+  max-height:350px;
+  display:block;
+  object-fit:contain;
+  border-radius:13px;
+}
+/* STAFF */
+.staff{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  max-width:820px;
+  margin:auto;
+}
+.staff-card{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:18px;
+  border:1px solid var(--border);
+  background:#0c0c0c;
+  border-radius:17px;
+}
+.staff-card img,
+.staff-placeholder{
+  width:76px;
+  height:76px;
+  border-radius:14px;
+  object-fit:cover;
+  border:1px solid var(--border);
+}
+.staff-placeholder{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#666;
+  font-size:10px;
+}
+.staff-role{
+  color:#ff4141;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:7px;
+}
+/* COMMUNITY */
+.community{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+.community-card{
+  padding:25px;
+  border:1px solid var(--border);
+  border-radius:17px;
+  background:#0c0c0c;
+}
+.community-card.main{
+  border-color:rgba(224,0,0,.45);
+  box-shadow:0 0 40px rgba(224,0,0,.05);
+}
+.community-card h3{
+  margin:10px 0 7px;
+}
+.community-card p{
+  color:var(--gray);
+  font-size:13px;
+  line-height:1.6;
+}
+.platform{
+  color:#ff4141;
+  font-size:9px;
+  letter-spacing:2px;
+  font-weight:700;
+}
+/* SUBPAGE HERO */
+.subhero{
+  padding:110px 0 70px;
+  text-align:center;
+}
+.subhero small{
+  color:#ff4141;
+  font-size:10px;
+  letter-spacing:3px;
+  font-weight:700;
+}
+.subhero h1{
+  font-size:clamp(45px,7vw,80px);
+  margin-top:15px;
+  line-height:.95;
+  letter-spacing:-4px;
+}
+.subhero h1 span{
+  color:var(--red);
+}
+.subhero p{
+  color:var(--gray);
+  max-width:650px;
+  margin:20px auto;
+  line-height:1.7;
+}
+/* FEATURES */
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+.feature-box{
+  padding:25px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:#0c0c0c;
+}
+.feature-box h3{
+  margin-bottom:8px;
+}
+.feature-box p{
+  color:var(--gray);
+  font-size:13px;
+  line-height:1.6;
+}
+/* FORMS */
+.form-wrap{
+  width:min(760px,100%);
+  margin:auto;
+  padding:30px;
+  background:#0b0b0b;
+  border:1px solid var(--border);
+  border-radius:20px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+.field{
+  margin-bottom:16px;
+}
+.field.full{
+  grid-column:1/-1;
+}
+.field label{
+  display:block;
+  color:#ddd;
+  font-size:12px;
+  font-weight:600;
+  margin-bottom:7px;
+}
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  padding:12px 13px;
+  color:#fff;
+  background:#050505;
+  border:1px solid var(--border);
+  border-radius:9px;
+  outline:none;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:rgba(224,0,0,.5);
+}
+.field textarea{
+  min-height:130px;
+  resize:vertical;
+}
+.checkbox{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:5px 0 18px;
+  color:#aaa;
+  font-size:12px;
+}
+.checkbox input{
+  accent-color:var(--red);
+}
+.hidden{
+  display:none;
+}
+.form-message{
+  margin-top:15px;
+  color:#ff5555;
+  font-size:12px;
+}
+/* SHOP */
+.shop-box{
+  max-width:800px;
+  margin:auto;
+  text-align:center;
+  padding:45px 25px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:linear-gradient(145deg,#111,#080808);
+}
+.shop-box .icon{
+  font-size:45px;
+}
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  text-align:center;
+  padding:35px 20px;
+  color:#555;
+  font-size:12px;
+}
+footer strong{
+  color:#999;
+}
+/* RESPONSIVE */
+@media(max-width:950px){
+  .nav-links{
+    display:none;
+  }
+  .mobile-menu{
+    display:block;
+  }
+  .hero,
+  .feature{
+    grid-template-columns:1fr;
+  }
+  .hero{
+    text-align:center;
+  }
+  .hero p{
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .hero-buttons{
+    justify-content:center;
+  }
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+  .feature-info{
+    text-align:center;
+  }
+  .staff{
+    grid-template-columns:1fr;
+  }
+  .community{
+    grid-template-columns:1fr;
+  }
+  .feature-grid{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:600px){
+  .container{
+    width:min(100% - 30px,1180px);
+  }
+  section{
+    padding:70px 0;
+  }
+  .hero{
+    padding-top:70px;
+  }
+  .hero h1{
+    font-size:57px;
+    letter-spacing:-3px;
+  }
+  .grid{
+    grid-template-columns:1fr;
+  }
+  .form-wrap{
+    padding:20px;
+  }
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+  .field.full{
+    grid-column:auto;
+  }
+  .logo{
+    font-size:14px;
+  }
+}
+</style>
 </head>
-
 <body>
-
 <header>
   <div class="nav">
-
-    <a href="#" class="logo">
+    <a href="#home" class="logo" onclick="showPage('home')">
       𝐙𝐄𝐍𝟕𝟕𝟕<span>//輝く時</span>
     </a>
-
-    <nav class="links">
-      <a href="#services">Servizi</a>
-      <a href="#zenbot">ZenBot</a>
-      <a href="#report">Report</a>
-      <a href="#collab">Sponsor</a>
-      <a href="#shop">Shop</a>
-      <a href="#staff">Staff</a>
+    <nav class="nav-links">
+      <a href="#home" onclick="showPage('home')">Home</a>
+      <a href="#zenbot" onclick="showPage('zenbot')">ZenBot</a>
+      <a href="#report" onclick="showPage('report')">Report</a>
+      <a href="#sponsor" onclick="showPage('sponsor')">Sponsor</a>
+      <a href="#shop" onclick="showPage('shop')">Shop</a>
     </nav>
-
     <a
       class="nav-button"
-      href="https://chat.whatsapp.com/Er8gDoOILAb4d4rUHwavpC?s=cl&p=i&ilr=0&amv=2"
-      target="_blank">
-      WHATSAPP
+      target="_blank"
+      href="https://chat.whatsapp.com/Er8gDoOILAb4d4rUHwavpC?s=cl&p=i&ilr=0&amv=2">
+      WhatsApp
     </a>
-
   </div>
 </header>
-
-
-<main>
-
-<!-- HERO -->
-
-<section class="hero">
-
-  <div class="hero-content">
-
-    <div class="badge">
-      𝐙𝐄𝐍𝟕𝟕𝟕 COMMUNITY
-    </div>
-
-    <h1>
-      𝐙𝐄𝐍𝟕𝟕𝟕
-      <span>//輝く時</span>
-    </h1>
-
-    <p class="hero-subtitle">
-      Un ecosistema costruito per distinguersi.
-      Community, ZenBot, Report, Collaborazioni e Shop
-      riuniti in un unico spazio.
-    </p>
-
-    <div class="hero-buttons">
-
-      <a
-        class="button button-red"
-        href="https://chat.whatsapp.com/Er8gDoOILAb4d4rUHwavpC?s=cl&p=i&ilr=0&amv=2"
-        target="_blank">
-        ENTRA SU WHATSAPP
-      </a>
-
-      <a class="button button-dark" href="#services">
-        ESPLORA ZEN
-      </a>
-
-    </div>
-
-  </div>
-
-
-  <div class="hero-visual">
-
-    <img
-      src="https://files.catbox.moe/einnha.png"
-      alt="ZEN777">
-
-  </div>
-
-</section>
-
-
-<!-- SERVICES -->
-
-<section id="services">
-
-  <div class="section-title">
-
-    <small>ZEN777 ECOSYSTEM</small>
-
-    <h2>Un unico ecosistema.</h2>
-
-    <p>
-      Tutto ciò che riguarda ZEN777 in un unico spazio.
-    </p>
-
-  </div>
-
-
-  <div class="grid">
-
-    <a class="card" href="#zenbot">
-
+<!-- HOME -->
+<div id="home" class="page active">
+  <section>
+    <div class="container hero">
       <div>
-        <div class="icon">🤖</div>
-
-        <h3>ZENBOT</h3>
-
+        <div class="badge">
+          <i></i>
+          ZEN777 COMMUNITY
+        </div>
+        <h1>
+          𝐙𝐄𝐍𝟕𝟕𝟕
+          <span>//輝く時</span>
+        </h1>
+        <p>
+          Un ecosistema costruito per distinguersi.
+          Community, ZenBot, Report, Collaborazioni e Shop
+          riuniti in un unico spazio.
+        </p>
+        <div class="hero-buttons">
+          <a
+            class="button button-red"
+            target="_blank"
+            href="https://chat.whatsapp.com/Er8gDoOILAb4d4rUHwavpC?s=cl&p=i&ilr=0&amv=2">
+            ENTRA SU WHATSAPP
+          </a>
+          <a class="button button-dark" href="#services">
+            ESPLORA ZEN
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://files.catbox.moe/einnha.png"
+          alt="ZEN777">
+      </div>
+    </div>
+  </section>
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <small>ZEN777 ECOSYSTEM</small>
+        <h2>Tutto in un unico spazio.</h2>
+        <p>
+          Scopri i servizi e i progetti dell'ecosistema ZEN777.
+        </p>
+      </div>
+      <div class="grid">
+        <a class="card" href="#zenbot" onclick="showPage('zenbot')">
+          <div>
+            <div class="icon">🤖</div>
+            <h3>ZENBOT</h3>
+            <p>Il bot ufficiale dell'ecosistema ZEN777.</p>
+          </div>
+          <span class="card-link">SCOPRI ZENBOT →</span>
+        </a>
+        <a class="card" href="#report" onclick="showPage('report')">
+          <div>
+            <div class="icon">🚨</div>
+            <h3>ZEN REPORT</h3>
+            <p>Segnala problemi o situazioni allo staff.</p>
+          </div>
+          <span class="card-link">FAI UN REPORT →</span>
+        </a>
+        <a class="card" href="#sponsor" onclick="showPage('sponsor')">
+          <div>
+            <div class="icon">🤝</div>
+            <h3>SPONSOR</h3>
+            <p>Proponi una collaborazione con ZEN777.</p>
+          </div>
+          <span class="card-link">PROPONI COLLAB →</span>
+        </a>
+        <a class="card" href="#shop" onclick="showPage('shop')">
+          <div>
+            <div class="icon">🛍️</div>
+            <h3>ZEN SHOP</h3>
+            <p>Scopri il nuovo Shop ufficiale ZEN777.</p>
+          </div>
+          <span class="card-link">VISITA SHOP →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container feature">
+      <div class="feature-image">
+        <img
+          src="https://files.catbox.moe/du36d3.png"
+          alt="ZenBot">
+      </div>
+      <div class="feature-info">
+        <small>ZENBOT 777</small>
+        <h2>
+          禅 | 𓆩𝒁𝖊𝖓𝕭𝖔𝖙𓆪 ⁷⁷⁷
+        </h2>
+        <p>
+          Funzioni, gestione, giochi e strumenti pensati
+          per la community ZEN777.
+        </p>
+        <a
+          class="button button-red"
+          href="#zenbot"
+          onclick="showPage('zenbot')">
+          SCOPRI ZENBOT
+        </a>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <small>ZEN REPORT</small>
+        <h2>Hai riscontrato un problema?</h2>
+        <p>
+          Invia un report allo staff ZEN777.
+        </p>
+      </div>
+      <div class="visual">
+        <img
+          src="https://files.catbox.moe/i7f05a.jpeg"
+          alt="ZEN Report">
+      </div>
+      <div style="text-align:center;margin-top:25px;">
+        <a
+          class="button button-red"
+          href="#report"
+          onclick="showPage('report')">
+          FAI UN REPORT
+        </a>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <small>ZEN SPONSOR / COLLAB</small>
+        <h2>Costruiamo qualcosa insieme.</h2>
+        <p>
+          Proponi una collaborazione o sponsorizzazione.
+        </p>
+      </div>
+      <div class="visual">
+        <img
+          src="https://files.catbox.moe/mrhbtq.jpeg"
+          alt="ZEN Sponsor">
+      </div>
+      <div style="text-align:center;margin-top:25px;">
+        <a
+          class="button button-red"
+          href="#sponsor"
+          onclick="showPage('sponsor')">
+          INVIA RICHIESTA
+        </a>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <small>STAFF ZEN777</small>
+        <h2>Le persone dietro ZEN.</h2>
+      </div>
+      <div class="staff">
+        <div class="staff-card">
+          <img
+            src="https://files.catbox.moe/y7y9qn.jpeg"
+            alt="Dryzen">
+          <div>
+            <div class="staff-role">STAFF</div>
+            <strong>禅 | 𓆩𝕯𝓻𝔂𝓏𝖊𝖓𓆪 ⁷⁷⁷</strong>
+          </div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-placeholder">
+            SKY
+          </div>
+          <div>
+            <div class="staff-role">STAFF</div>
+            <strong>禅 | 𓆩スカイ/𝓢𝓴𝔂𓆪 ⁷⁷⁷</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <small>COMMUNITY</small>
+        <h2>Resta connesso.</h2>
+        <p>
+          WhatsApp è la piattaforma principale di ZEN777.
+        </p>
+      </div>
+      <div class="community">
+        <a
+          class="community-card main"
+          target="_blank"
+          href="https://chat.whatsapp.com/Er8gDoOILAb4d4rUHwavpC?s=cl&p=i&ilr=0&amv=2">
+          <span class="platform">MAIN PLATFORM</span>
+          <h3>WhatsApp</h3>
+          <p>Community principale ZEN777.</p>
+        </a>
+        <div class="community-card">
+          <span class="platform">SECONDARY</span>
+          <h3>Telegram</h3>
+          <p>Community e aggiornamenti.</p>
+        </div>
+        <div class="community-card">
+          <span class="platform">SECONDARY</span>
+          <h3>Discord</h3>
+          <p>Il nostro spazio Discord.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- ZENBOT -->
+<div id="zenbot" class="page">
+  <section>
+    <div class="container">
+      <div class="subhero">
+        <small>ZENBOT 777</small>
+        <h1>
+          禅 | 𓆩𝒁𝖊𝖓𝕭𝖔𝖙𓆪
+          <span>⁷⁷⁷</span>
+        </h1>
         <p>
           Il bot ufficiale dell'ecosistema ZEN777.
+          Funzioni, giochi, gestione e strumenti per la community.
         </p>
+        <a class="button button-red" href="#">
+          APRI ZENBOT
+        </a>
       </div>
-
-      <span class="card-link">
-        SCOPRI ZENBOT →
-      </span>
-
-    </a>
-
-
-    <a class="card" href="#report">
-
-      <div>
-        <div class="icon">🚨</div>
-
-        <h3>ZEN REPORT</h3>
-
+      <div class="feature-image" style="max-width:850px;margin:auto;">
+        <img
+          src="https://files.catbox.moe/du36d3.png"
+          alt="ZENBOT">
+      </div>
+      <section>
+        <div class="section-title">
+          <small>ZENBOT</small>
+          <h2>Funzioni.</h2>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-box">
+            <h3>⚡ Funzioni</h3>
+            <p>Strumenti utili per la gestione della community.</p>
+          </div>
+          <div class="feature-box">
+            <h3>🎮 Giochi</h3>
+            <p>Sistemi e giochi dedicati agli utenti.</p>
+          </div>
+          <div class="feature-box">
+            <h3>🛡️ Admin</h3>
+            <p>Strumenti di moderazione e gestione.</p>
+          </div>
+          <div class="feature-box">
+            <h3>👑 Owner</h3>
+            <p>Funzioni avanzate per gli owner.</p>
+          </div>
+          <div class="feature-box">
+            <h3>⚔️ RPG</h3>
+            <p>Sistemi RPG per la community.</p>
+          </div>
+          <div class="feature-box">
+            <h3>📩 Richieste</h3>
+            <p>Gestione delle richieste degli utenti.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>
+<!-- REPORT -->
+<div id="report" class="page">
+  <section>
+    <div class="container">
+      <div class="subhero">
+        <small>ZEN REPORT</small>
+        <h1>
+          Segnala.
+          <span>Proteggi.</span>
+        </h1>
         <p>
-          Segnala problemi o situazioni direttamente allo staff.
+          Invia un report allo staff ZEN777.
+          Puoi anche scegliere di rimanere anonimo.
         </p>
       </div>
-
-      <span class="card-link">
-        FAI UN REPORT →
-      </span>
-
-    </a>
-
-
-    <a class="card" href="#collab">
-
-      <div>
-        <div class="icon">🤝</div>
-
-        <h3>SPONSOR</h3>
-
+      <div class="form-wrap">
+        <div class="form-grid">
+          <div class="field full">
+            <label>Piattaforma</label>
+            <select id="reportPlatform" onchange="changeReportPlatform()">
+              <option value="">Seleziona piattaforma</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="telegram">Telegram</option>
+              <option value="discord">Discord</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label id="reportedLabel">
+              Numero / Username della persona segnalata
+            </label>
+            <input
+              id="reportedUser"
+              type="text"
+              placeholder="Inserisci il dato">
+          </div>
+          <div class="field full">
+            <label>Motivo del report</label>
+            <select id="reportReason">
+              <option value="">Seleziona un motivo</option>
+              <option>Violazione delle regole</option>
+              <option>Truffa / Scam</option>
+              <option>Spam</option>
+              <option>Molestie</option>
+              <option>Comportamento inappropriato</option>
+              <option>Altro</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Descrizione</label>
+            <textarea
+              id="reportDescription"
+              placeholder="Descrivi dettagliatamente cosa è successo..."></textarea>
+          </div>
+          <div class="field full">
+            <label>Prove / Link</label>
+            <input
+              id="reportEvidence"
+              type="text"
+              placeholder="Link a screenshot, messaggi o altre prove">
+          </div>
+        </div>
+        <label class="checkbox">
+          <input
+            id="anonymous"
+            type="checkbox"
+            onchange="toggleContact()">
+          Voglio inviare questo report anonimamente
+        </label>
+        <div id="contactField" class="field">
+          <label>Email o numero di contatto</label>
+          <input
+            id="reportContact"
+            type="text"
+            placeholder="Email oppure numero di telefono">
+        </div>
+        <button
+          class="button button-red"
+          style="width:100%;"
+          onclick="submitReport()">
+          INVIA REPORT
+        </button>
+        <div id="reportMessage" class="form-message"></div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- SPONSOR -->
+<div id="sponsor" class="page">
+  <section>
+    <div class="container">
+      <div class="subhero">
+        <small>ZEN SPONSOR / COLLAB</small>
+        <h1>
+          Costruiamo
+          <span>insieme.</span>
+        </h1>
         <p>
-          Proponi collaborazioni e sponsorizzazioni con ZEN777.
+          Hai una community, un progetto o un'attività?
+          Invia la tua proposta a ZEN777.
         </p>
       </div>
-
-      <span class="card-link">
-        PROPONI COLLAB →
-      </span>
-
-    </a>
-
-
-    <a class="card" href="#shop">
-
-      <div>
-        <div class="icon">🛍️</div>
-
-        <h3>ZEN SHOP</h3>
-
+      <div class="form-wrap">
+        <div class="form-grid">
+          <div class="field">
+            <label>Nome / Community</label>
+            <input
+              id="sponsorName"
+              type="text"
+              placeholder="Nome della community">
+          </div>
+          <div class="field">
+            <label>Piattaforma</label>
+            <select id="sponsorPlatform">
+              <option value="">Seleziona</option>
+              <option>WhatsApp</option>
+              <option>Telegram</option>
+              <option>Discord</option>
+              <option>Altro</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Link della community / progetto</label>
+            <input
+              id="sponsorLink"
+              type="url"
+              placeholder="https://...">
+          </div>
+          <div class="field full">
+            <label>Tipo di richiesta</label>
+            <select id="sponsorType">
+              <option value="">Seleziona</option>
+              <option>
+                Sponsorizzazione
+              </option>
+              <option>
+                Collaborazione
+              </option>
+              <option>
+                Partnership
+              </option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Email o numero di contatto</label>
+            <input
+              id="sponsorContact"
+              type="text"
+              placeholder="Email oppure numero di telefono">
+          </div>
+          <div class="field full">
+            <label>Descrizione della proposta</label>
+            <textarea
+              id="sponsorDescription"
+              placeholder="Descrivi la collaborazione che proponi..."></textarea>
+          </div>
+          <div class="field full">
+            <label>Informazioni aggiuntive</label>
+            <textarea
+              id="sponsorExtra"
+              placeholder="Informazioni aggiuntive, statistiche, condizioni, ecc."></textarea>
+          </div>
+        </div>
+        <button
+          class="button button-red"
+          style="width:100%;"
+          onclick="submitSponsor()">
+          INVIA RICHIESTA
+        </button>
+        <div id="sponsorMessage" class="form-message"></div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- SHOP -->
+<div id="shop" class="page">
+  <section>
+    <div class="container">
+      <div class="subhero">
+        <small>ZEN SHOP</small>
+        <h1>
+          ZEN
+          <span>SHOP.</span>
+        </h1>
         <p>
           Il nuovo Shop ufficiale ZEN777.
+          Stiamo preparando qualcosa di nuovo.
         </p>
       </div>
-
-      <span class="card-link">
-        VISITA SHOP →
-      </span>
-
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- ZENBOT -->
-
-<section id="zenbot">
-
-  <div class="feature">
-
-    <div class="feature-image">
-
-      <img
-        src="https://files.catbox.moe/du36d3.png"
-        alt="ZENBOT">
-
-    </div>
-
-
-    <div class="feature-info">
-
-      <small>ZENBOT 777</small>
-
-      <h2>
-        禅 | 𓆩𝒁𝖊𝖓𝕭𝖔𝖙𓆪 ⁷⁷⁷
-      </h2>
-
-      <p>
-        Il bot ufficiale dell'ecosistema ZEN777.
-        Funzioni, gestione, giochi e strumenti pensati
-        per la community.
-      </p>
-
-      <a class="button button-red" href="#">
-        SCOPRI ZENBOT
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- REPORT -->
-
-<section id="report">
-
-  <div class="section-title">
-
-    <small>ZEN REPORT</small>
-
-    <h2>Qualcosa non va?</h2>
-
-    <p>
-      Utilizza il sistema ufficiale ZEN Report
-      per segnalare una situazione allo staff.
-    </p>
-
-  </div>
-
-
-  <div class="visual-card">
-
-    <img
-      src="https://files.catbox.moe/i7f05a.jpeg"
-      alt="ZEN Report">
-
-  </div>
-
-
-  <div class="section-button">
-
-    <a class="button button-red" href="#">
-      FAI UN REPORT
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- SPONSOR -->
-
-<section id="collab">
-
-  <div class="section-title">
-
-    <small>ZEN SPONSOR / COLLAB</small>
-
-    <h2>Costruiamo qualcosa insieme.</h2>
-
-    <p>
-      Hai una community, un progetto o un'attività?
-      Proponi una collaborazione a ZEN777.
-    </p>
-
-  </div>
-
-
-  <div class="visual-card">
-
-    <img
-      src="https://files.catbox.moe/mrhbtq.jpeg"
-      alt="ZEN Sponsor">
-
-  </div>
-
-
-  <div class="section-button">
-
-    <a class="button button-red" href="#">
-      INVIA RICHIESTA
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- SHOP -->
-
-<section id="shop">
-
-  <div class="section-title">
-
-    <small>ZEN SHOP</small>
-
-    <h2>Il prossimo livello.</h2>
-
-    <p>
-      Il nuovo Shop ufficiale ZEN777 è in arrivo.
-    </p>
-
-  </div>
-
-
-  <div class="card" style="max-width:700px;margin:auto;text-align:center;">
-
-    <div class="icon">🛍️</div>
-
-    <h3>ZEN SHOP</h3>
-
-    <p>
-      Stiamo preparando il nuovo Shop ZEN777.
-    </p>
-
-    <div style="margin-top:25px;">
-
-      <a class="button button-red" href="#">
-        APRI SHOP
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- STAFF -->
-
-<section id="staff">
-
-  <div class="section-title">
-
-    <small>ZEN777 STAFF</small>
-
-    <h2>Le persone dietro ZEN.</h2>
-
-    <p>
-      Il team che costruisce e gestisce l'ecosistema ZEN777.
-    </p>
-
-  </div>
-
-
-  <div class="staff-grid">
-
-    <div class="staff-card">
-
-      <img
-        src="https://files.catbox.moe/y7y9qn.jpeg"
-        alt="Dryzen">
-
-      <div>
-
-        <div class="staff-role">
-          STAFF
+      <div class="shop-box">
+        <div class="icon">
+          🛍️
         </div>
-
-        <div class="staff-name">
-          禅 | 𓆩𝕯𝓻𝔂𝓏𝖊𝖓𓆪 ⁷⁷⁷
-        </div>
-
+        <h2>Coming Soon</h2>
+        <p style="color:#999;margin:15px auto 25px;max-width:500px;line-height:1.7;">
+          Il nuovo Shop ZEN777 è in fase di sviluppo.
+          Torna presto per scoprire tutti i prodotti e servizi.
+        </p>
+        <a
+          class="button button-red"
+          href="#home"
+          onclick="showPage('home')">
+          TORNA ALLA HOME
+        </a>
       </div>
-
     </div>
-
-
-    <div class="staff-card">
-
-      <div style="
-        width:76px;
-        height:76px;
-        border-radius:14px;
-        border:1px solid rgba(255,255,255,.08);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        color:#555;
-        font-size:10px;
-        text-align:center;
-      ">
-        SKY
-      </div>
-
-      <div>
-
-        <div class="staff-role">
-          STAFF
-        </div>
-
-        <div class="staff-name">
-          禅 | 𓆩スカイ/𝓢𝓴𝔂𓆪 ⁷⁷⁷
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- COMMUNITY -->
-
-<section id="community">
-
-  <div class="section-title">
-
-    <small>COMMUNITY</small>
-
-    <h2>Resta connesso.</h2>
-
-    <p>
-      WhatsApp è la piattaforma principale di ZEN777.
-      Telegram e Discord sono piattaforme secondarie.
-    </p>
-
-  </div>
-
-
-  <div class="community">
-
-
-    <a
-      class="community-card main"
-      href="https://chat.whatsapp.com/Er8gDoOILAb4d4rUHwavpC?s=cl&p=i&ilr=0&amv=2"
-      target="_blank">
-
-      <span class="main-label">
-        MAIN PLATFORM
-      </span>
-
-      <h3>WhatsApp</h3>
-
-      <p>
-        Entra nella community principale ZEN777.
-      </p>
-
-    </a>
-
-
-    <div class="community-card">
-
-      <span class="main-label">
-        SECONDARY PLATFORM
-      </span>
-
-      <h3>Telegram</h3>
-
-      <p>
-        Community e aggiornamenti ZEN777.
-      </p>
-
-    </div>
-
-
-    <div class="community-card">
-
-      <span class="main-label">
-        SECONDARY PLATFORM
-      </span>
-
-      <h3>Discord</h3>
-
-      <p>
-        Il nostro spazio Discord.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-
+  </section>
+</div>
 <footer>
-
   <strong>𝐙𝐄𝐍𝟕𝟕𝟕 // 輝く時</strong>
-
   <br><br>
-
   © 2026 ZEN777. All rights reserved.
-
 </footer>
-
+<script>
+/* PAGE SYSTEM */
+function showPage(page){
+  document.querySelectorAll(".page").forEach(function(el){
+    el.classList.remove("active");
+  });
+  const target=document.getElementById(page);
+  if(target){
+    target.classList.add("active");
+  }
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+  history.replaceState(null,"","#"+page);
+}
+/* OPEN PAGE FROM URL */
+function loadPage(){
+  const page=location.hash.replace("#","");
+  const allowed=[
+    "home",
+    "zenbot",
+    "report",
+    "sponsor",
+    "shop"
+  ];
+  if(allowed.includes(page)){
+    showPage(page);
+  }else{
+    showPage("home");
+  }
+}
+/* REPORT PLATFORM */
+function changeReportPlatform(){
+  const platform=
+    document.getElementById("reportPlatform").value;
+  const label=
+    document.getElementById("reportedLabel");
+  const input=
+    document.getElementById("reportedUser");
+  if(platform==="whatsapp"){
+    label.textContent="Numero WhatsApp della persona segnalata";
+    input.placeholder="+39 ...";
+  }else if(platform==="telegram"){
+    label.textContent="Username Telegram della persona segnalata";
+    input.placeholder="@username";
+  }else if(platform==="discord"){
+    label.textContent="Username Discord della persona segnalata";
+    input.placeholder="username";
+  }else{
+    label.textContent=
+      "Numero / Username della persona segnalata";
+    input.placeholder=
+      "Inserisci il dato";
+  }
+}
+/* ANONYMOUS REPORT */
+function toggleContact(){
+  const anonymous=
+    document.getElementById("anonymous").checked;
+  const contact=
+    document.getElementById("contactField");
+  contact.style.display=
+    anonymous ? "none" : "block";
+}
+/* REPORT */
+function submitReport(){
+  const platform=
+    document.getElementById("reportPlatform").value;
+  const reported=
+    document.getElementById("reportedUser").value;
+  const reason=
+    document.getElementById("reportReason").value;
+  const description=
+    document.getElementById("reportDescription").value;
+  const anonymous=
+    document.getElementById("anonymous").checked;
+  const contact=
+    document.getElementById("reportContact").value;
+  const message=
+    document.getElementById("reportMessage");
+  if(!platform || !reported || !reason || !description){
+    message.textContent=
+      "Compila tutti i campi obbligatori.";
+    return;
+  }
+  if(!anonymous && !contact){
+    message.textContent=
+      "Inserisci un'email o un numero di contatto, oppure seleziona Anonimo.";
+    return;
+  }
+  /*
+    SUPABASE:
+    Qui collegheremo successivamente
+    la tabella "reports".
+  */
+  message.textContent=
+    "Report compilato correttamente. Il collegamento allo staff verrà attivato con Supabase.";
+}
+/* SPONSOR */
+function submitSponsor(){
+  const name=
+    document.getElementById("sponsorName").value;
+  const platform=
+    document.getElementById("sponsorPlatform").value;
+  const link=
+    document.getElementById("sponsorLink").value;
+  const type=
+    document.getElementById("sponsorType").value;
+  const contact=
+    document.getElementById("sponsorContact").value;
+  const description=
+    document.getElementById("sponsorDescription").value;
+  const message=
+    document.getElementById("sponsorMessage");
+  if(
+    !name ||
+    !platform ||
+    !type ||
+    !contact ||
+    !description
+  ){
+    message.textContent=
+      "Compila tutti i campi obbligatori.";
+    return;
+  }
+  /*
+    SUPABASE:
+    Qui collegheremo successivamente
+    la tabella "sponsor_requests".
+  */
+  message.textContent=
+    "Richiesta compilata correttamente. Il collegamento allo staff verrà attivato con Supabase.";
+}
+window.addEventListener(
+  "load",
+  loadPage
+);
+</script>
 </body>
 </html>

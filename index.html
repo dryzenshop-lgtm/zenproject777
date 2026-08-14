@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>𝐙𝐄𝐍𝟕𝟕𝟕//輝く時</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #050505;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      padding: 25px 7%;
+      border-bottom: 1px solid #222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 9vw, 90px);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #e00000;
+    }
+
+    .hero p {
+      color: #aaa;
+      font-size: 18px;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 25px;
+      border: 1px solid #e00000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: .2s;
+    }
+
+    .button.primary {
+      background: #e00000;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      opacity: .85;
+    }
+
+    .services {
+      padding: 80px 7%;
+    }
+
+    .services h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 35px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 30px;
+      border: 1px solid #242424;
+      border-radius: 15px;
+      background: #0b0b0b;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #999;
+      line-height: 1.5;
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      border-top: 1px solid #222;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">𝐙𝐄𝐍𝟕𝟕𝟕//輝く時</div>
+
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#community">Community</a>
+  </nav>
+</header>
+
+<section class="hero">
+
+  <div>
+    <h1>𝐙𝐄𝐍𝟕𝟕𝟕<span>//輝く時</span></h1>
+
+    <p>
+      WE DON'T FOLLOW. WE OVERTAKE.
+    </p>
+
+    <div class="buttons">
+      <a class="button primary"
+         href="https://chat.whatsapp.com/Er8gDoOILAb4d4rUHwavpC?s=cl&p=i&ilr=0&amv=2">
+        JOIN WHATSAPP
+      </a>
+
+      <a class="button" href="#services">
+        EXPLORE ZEN
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<section class="services" id="services">
+
+  <h2>ZEN777 SERVICES</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>🤖 ZENBOT</h3>
+      <p>
+        Scopri 禅 | 𓆩𝒁𝖊𝖓𝕭𝖔𝖙𓆪 ⁷⁷⁷
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🚨 ZEN REPORT</h3>
+      <p>
+        Segnala una persona, un gruppo o un problema.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🤝 ZEN COLLAB</h3>
+      <p>
+        Proponi una collaborazione con ZEN777.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>💰 ZEN SPONSOR</h3>
+      <p>
+        Invia una richiesta di sponsorship.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🛍️ ZEN SHOP</h3>
+      <p>
+        Accedi allo shop ufficiale ZEN777.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="services" id="community">
+
+  <h2>COMMUNITY</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>WhatsApp</h3>
+      <p>MAIN PLATFORM</p>
+    </div>
+
+    <div class="card">
+      <h3>Telegram</h3>
+      <p>Community secondaria.</p>
+    </div>
+
+    <div class="card">
+      <h3>Discord</h3>
+      <p>Community secondaria.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  𝐙𝐄𝐍𝟕𝟕𝟕//輝く時
+</footer>
+
+</body>
+</html>

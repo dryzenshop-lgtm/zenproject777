@@ -4,18 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>𝐙𝐄𝐍𝟕𝟕𝟕//輝く時</title>
-  <meta name="description" content="𝐙𝐄𝐍𝟕𝟕𝟕//輝く時 — Community, ZenBot, Report e Collaborazioni.">
+  <title>𝐙𝐄𝐍𝟕𝟕𝟕 // 輝く時</title>
+  <meta name="description" content="ZEN777 — Community, ZenBot, Report, Collaborazioni e Shop.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --black: #050505;
-      --black2: #0b0b0b;
+      --bg: #040404;
+      --bg-soft: #090909;
+      --card: rgba(14,14,14,.78);
       --red: #e00000;
-      --red2: #ff1717;
-      --white: #ffffff;
-      --gray: #a5a5a5;
-      --border: rgba(255,255,255,.09);
+      --red-bright: #ff2020;
+      --white: #fff;
+      --muted: #929292;
+      --border: rgba(255,255,255,.08);
+      --red-border: rgba(224,0,0,.35);
     }
 
     * {
@@ -29,10 +35,26 @@
     }
 
     body {
-      background: var(--black);
+      background:
+        radial-gradient(circle at 50% -10%, rgba(224,0,0,.16), transparent 32%),
+        radial-gradient(circle at 90% 40%, rgba(224,0,0,.05), transparent 25%),
+        var(--bg);
       color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Space Grotesk", Arial, sans-serif;
       overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: linear-gradient(to bottom, black, transparent 80%);
+      z-index: -2;
     }
 
     a {
@@ -40,37 +62,21 @@
       text-decoration: none;
     }
 
-    /* BACKGROUND */
-
-    body::before {
-      content: "";
-      position: fixed;
-      width: 600px;
-      height: 600px;
-      top: -300px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(224,0,0,.16);
-      filter: blur(150px);
-      pointer-events: none;
-      z-index: -1;
-    }
-
     /* NAVBAR */
 
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(5,5,5,.78);
-      backdrop-filter: blur(18px);
+      z-index: 1000;
+      background: rgba(4,4,4,.72);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav {
-      max-width: 1200px;
-      margin: auto;
+      max-width: 1250px;
       height: 74px;
+      margin: auto;
       padding: 0 25px;
 
       display: flex;
@@ -79,9 +85,10 @@
     }
 
     .logo {
-      font-size: 19px;
-      font-weight: 900;
-      letter-spacing: .5px;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .4px;
+      white-space: nowrap;
     }
 
     .logo span {
@@ -90,94 +97,155 @@
 
     .links {
       display: flex;
-      gap: 26px;
+      gap: 25px;
       align-items: center;
     }
 
     .links a {
-      color: #bdbdbd;
-      font-size: 14px;
-      transition: .2s;
+      color: #aaa;
+      font-size: 13px;
+      transition: .25s;
     }
 
     .links a:hover {
-      color: white;
+      color: #fff;
     }
 
     .nav-button {
       background: var(--red);
       padding: 11px 17px;
-      border-radius: 8px;
-      color: white !important;
+      border-radius: 9px;
+      font-size: 13px;
       font-weight: 700;
+      transition: .25s;
+    }
+
+    .nav-button:hover {
+      background: var(--red-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(224,0,0,.25);
+    }
+
+    /* GLOBAL */
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 105px 25px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title small {
+      color: #ff3b3b;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(32px, 5vw, 52px);
+      margin-top: 12px;
+      letter-spacing: -1.5px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 15px auto 0;
+      line-height: 1.7;
+      font-size: 15px;
     }
 
     /* HERO */
 
     .hero {
+      max-width: 1250px;
       min-height: calc(100vh - 74px);
-      max-width: 1200px;
       margin: auto;
+      padding: 70px 25px 100px;
 
-      padding: 100px 25px;
-
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
-      justify-content: center;
-
-      text-align: center;
+      gap: 65px;
     }
 
     .hero-content {
-      max-width: 900px;
+      position: relative;
+      z-index: 2;
     }
 
     .badge {
-      display: inline-block;
-      border: 1px solid rgba(224,0,0,.4);
-      background: rgba(224,0,0,.08);
-      color: #ff5a5a;
-      padding: 8px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 8px 13px;
+      border: 1px solid var(--red-border);
       border-radius: 999px;
-      font-size: 12px;
+      background: rgba(224,0,0,.07);
+
+      color: #ff6464;
+      font-size: 11px;
       font-weight: 700;
-      margin-bottom: 25px;
+      letter-spacing: 1px;
+      margin-bottom: 23px;
+    }
+
+    .badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 12px var(--red);
     }
 
     .hero h1 {
-      font-size: clamp(45px, 9vw, 100px);
-      line-height: .95;
-      font-weight: 950;
-      letter-spacing: -4px;
+      font-size: clamp(55px, 8vw, 105px);
+      line-height: .9;
+      letter-spacing: -5px;
+      font-weight: 700;
     }
 
     .hero h1 span {
+      display: block;
       color: var(--red);
     }
 
-    .hero p {
-      max-width: 650px;
-      margin: 28px auto;
-      color: var(--gray);
-      line-height: 1.7;
+    .hero-subtitle {
+      margin-top: 25px;
+      color: #d0d0d0;
       font-size: 17px;
+      line-height: 1.7;
+      max-width: 590px;
     }
 
     .hero-buttons {
       display: flex;
-      justify-content: center;
-      gap: 13px;
       flex-wrap: wrap;
+      gap: 12px;
       margin-top: 30px;
     }
 
     .button {
-      padding: 14px 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
       border-radius: 9px;
+
       border: 1px solid var(--border);
-      font-size: 14px;
-      font-weight: 800;
-      transition: .2s;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      transition: .25s;
     }
 
     .button:hover {
@@ -190,133 +258,240 @@
     }
 
     .button-red:hover {
-      background: var(--red2);
+      background: var(--red-bright);
+      box-shadow: 0 12px 35px rgba(224,0,0,.22);
     }
 
     .button-dark {
-      background: #101010;
+      background: rgba(255,255,255,.035);
     }
 
-    /* SECTIONS */
+    .button-dark:hover {
+      background: rgba(255,255,255,.07);
+    }
 
-    section {
-      max-width: 1200px;
+    /* HERO IMAGE */
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 15%;
+      background: rgba(224,0,0,.16);
+      filter: blur(90px);
+      z-index: -1;
+    }
+
+    .hero-visual img {
+      display: block;
+      width: 100%;
+      max-width: 590px;
       margin: auto;
-      padding: 100px 25px;
+
+      border-radius: 25px;
+      border: 1px solid var(--border);
+
+      box-shadow:
+        0 30px 100px rgba(0,0,0,.65),
+        0 0 70px rgba(224,0,0,.08);
+
+      transition: .4s;
     }
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 45px;
+    .hero-visual img:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: var(--red-border);
     }
 
-    .section-title small {
-      color: var(--red);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(30px, 5vw, 48px);
-      margin-top: 10px;
-    }
-
-    .section-title p {
-      color: var(--gray);
-      max-width: 600px;
-      margin: 15px auto 0;
-      line-height: 1.6;
-    }
-
-    /* CARDS */
+    /* SERVICES */
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
     }
 
     .card {
-      background: linear-gradient(145deg,#0d0d0d,#080808);
+      position: relative;
+      overflow: hidden;
+
+      min-height: 225px;
+      padding: 25px;
+
+      border-radius: 17px;
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px;
-      min-height: 220px;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      background:
+        linear-gradient(145deg, rgba(20,20,20,.9), rgba(7,7,7,.9));
 
-      transition: .25s;
+      transition: .3s;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      top: -70px;
+      right: -70px;
+
+      background: rgba(224,0,0,.13);
+      filter: blur(35px);
     }
 
     .card:hover {
-      border-color: rgba(224,0,0,.55);
-      transform: translateY(-5px);
-      box-shadow: 0 15px 50px rgba(0,0,0,.4);
+      transform: translateY(-6px);
+      border-color: var(--red-border);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
     }
 
     .icon {
-      font-size: 32px;
-      margin-bottom: 20px;
+      font-size: 27px;
+      margin-bottom: 25px;
     }
 
     .card h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
+      font-size: 19px;
+      margin-bottom: 9px;
     }
 
     .card p {
-      color: var(--gray);
+      color: var(--muted);
       line-height: 1.6;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .card-link {
-      color: #ff4444;
-      font-size: 13px;
-      font-weight: 800;
-      margin-top: 25px;
+      display: inline-block;
+      margin-top: 22px;
+      color: #ff4545;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .5px;
     }
 
-    /* ZENBOT */
+    /* FEATURE */
 
-    .bot-section {
+    .feature {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 35px;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 55px;
       align-items: center;
     }
 
-    .bot-image {
-      border-radius: 22px;
+    .feature-image {
+      background: #080808;
       border: 1px solid var(--border);
+      border-radius: 20px;
       overflow: hidden;
-      background: #0b0b0b;
     }
 
-    .bot-image img {
-      display: block;
+    .feature-image img {
       width: 100%;
-      height: auto;
+      display: block;
     }
 
-    .bot-info small {
-      color: var(--red);
-      font-weight: 900;
+    .feature-info small {
+      color: var(--red-bright);
+      font-size: 11px;
+      font-weight: 700;
       letter-spacing: 2px;
     }
 
-    .bot-info h2 {
-      font-size: clamp(35px, 5vw, 55px);
-      margin: 12px 0;
+    .feature-info h2 {
+      font-size: clamp(34px, 5vw, 55px);
+      line-height: 1;
+      margin: 12px 0 18px;
+      letter-spacing: -2px;
     }
 
-    .bot-info p {
-      color: var(--gray);
-      line-height: 1.7;
+    .feature-info p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
       margin-bottom: 25px;
+    }
+
+    /* REPORT / SPONSOR */
+
+    .visual-card {
+      max-width: 720px;
+      margin: auto;
+
+      padding: 12px;
+
+      background: rgba(10,10,10,.85);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+
+      box-shadow: 0 20px 70px rgba(0,0,0,.35);
+    }
+
+    .visual-card img {
+      display: block;
+      width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      border-radius: 13px;
+    }
+
+    .section-button {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    /* STAFF */
+
+    .staff-grid {
+      max-width: 800px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .staff-card {
+      padding: 18px;
+
+      background: rgba(12,12,12,.85);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      display: flex;
+      align-items: center;
+      gap: 17px;
+
+      transition: .3s;
+    }
+
+    .staff-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--red-border);
+    }
+
+    .staff-card img {
+      width: 76px;
+      height: 76px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .staff-role {
+      color: var(--red-bright);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 7px;
+    }
+
+    .staff-name {
+      font-size: 14px;
+      line-height: 1.4;
     }
 
     /* COMMUNITY */
@@ -324,36 +499,45 @@
     .community {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 16px;
     }
 
     .community-card {
-      padding: 28px;
-      background: #0b0b0b;
+      padding: 25px;
+
+      border-radius: 17px;
+      background: rgba(11,11,11,.85);
       border: 1px solid var(--border);
-      border-radius: 16px;
+
+      transition: .25s;
+    }
+
+    .community-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--red-border);
     }
 
     .community-card.main {
-      border-color: rgba(224,0,0,.55);
-      box-shadow: 0 0 35px rgba(224,0,0,.08);
-    }
-
-    .community-card h3 {
-      margin: 12px 0 7px;
-    }
-
-    .community-card p {
-      color: var(--gray);
-      font-size: 14px;
+      border-color: var(--red-border);
+      box-shadow: 0 0 40px rgba(224,0,0,.06);
     }
 
     .main-label {
-      display: inline-block;
-      color: #ff4b4b;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 1px;
+      color: #ff4545;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .community-card h3 {
+      margin: 10px 0 7px;
+      font-size: 20px;
+    }
+
+    .community-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
     }
 
     /* FOOTER */
@@ -362,27 +546,89 @@
       border-top: 1px solid var(--border);
       padding: 35px 25px;
       text-align: center;
-      color: #666;
-      font-size: 13px;
+      color: #555;
+      font-size: 12px;
     }
 
     footer strong {
-      color: #aaa;
+      color: #999;
     }
 
     /* MOBILE */
 
-    @media (max-width: 850px) {
+    @media (max-width: 950px) {
 
       .links {
         display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 80px;
+      }
+
+      .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .feature {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+
+      section {
+        padding: 75px 18px;
+      }
+
+      .nav {
+        padding: 0 18px;
+      }
+
+      .nav-button {
+        padding: 9px 12px;
+        font-size: 11px;
+      }
+
+      .logo {
+        font-size: 14px;
+      }
+
+      .hero {
+        padding-left: 18px;
+        padding-right: 18px;
+        gap: 40px;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+        letter-spacing: -3px;
+      }
+
+      .hero-subtitle {
+        font-size: 15px;
       }
 
       .grid {
         grid-template-columns: 1fr;
       }
 
-      .bot-section {
+      .staff-grid {
         grid-template-columns: 1fr;
       }
 
@@ -390,12 +636,12 @@
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        padding-top: 80px;
+      .visual-card {
+        padding: 8px;
       }
 
-      .hero h1 {
-        letter-spacing: -2px;
+      .visual-card img {
+        max-height: 250px;
       }
     }
   </style>
@@ -413,25 +659,26 @@
     <nav class="links">
       <a href="#services">Servizi</a>
       <a href="#zenbot">ZenBot</a>
-      <a href="#community">Community</a>
-      <a href="#collab">Collab / Sponsor</a>
+      <a href="#report">Report</a>
+      <a href="#collab">Sponsor</a>
       <a href="#shop">Shop</a>
+      <a href="#staff">Staff</a>
     </nav>
 
     <a
       class="nav-button"
       href="https://chat.whatsapp.com/Er8gDoOILAb4d4rUHwavpC?s=cl&p=i&ilr=0&amv=2"
       target="_blank">
-      WhatsApp
+      WHATSAPP
     </a>
 
   </div>
 </header>
 
 
-<!-- HERO -->
-
 <main>
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -442,13 +689,14 @@
     </div>
 
     <h1>
-      𝐙𝐄𝐍𝟕𝟕𝟕<span>//輝く時</span>
+      𝐙𝐄𝐍𝟕𝟕𝟕
+      <span>//輝く時</span>
     </h1>
 
-    <p>
-      Una community costruita per distinguersi.
-      Scopri ZenBot, segnala problemi, proponi collaborazioni
-      e resta connesso con ZEN777 su WhatsApp, Telegram e Discord.
+    <p class="hero-subtitle">
+      Un ecosistema costruito per distinguersi.
+      Community, ZenBot, Report, Collaborazioni e Shop
+      riuniti in un unico spazio.
     </p>
 
     <div class="hero-buttons">
@@ -468,6 +716,15 @@
 
   </div>
 
+
+  <div class="hero-visual">
+
+    <img
+      src="https://files.catbox.moe/einnha.png"
+      alt="ZEN777">
+
+  </div>
+
 </section>
 
 
@@ -479,10 +736,10 @@
 
     <small>ZEN777 ECOSYSTEM</small>
 
-    <h2>Tutto ciò che ti serve.</h2>
+    <h2>Un unico ecosistema.</h2>
 
     <p>
-      Un unico ecosistema per la community ZEN777.
+      Tutto ciò che riguarda ZEN777 in un unico spazio.
     </p>
 
   </div>
@@ -498,12 +755,13 @@
         <h3>ZENBOT</h3>
 
         <p>
-          Scopri 禅 | 𓆩𝒁𝖊𝖓𝕭𝖔𝖙𓆪 ⁷⁷⁷,
-          il bot dell'ecosistema ZEN777.
+          Il bot ufficiale dell'ecosistema ZEN777.
         </p>
       </div>
 
-      <div class="card-link">SCOPRI ZENBOT →</div>
+      <span class="card-link">
+        SCOPRI ZENBOT →
+      </span>
 
     </a>
 
@@ -516,35 +774,37 @@
         <h3>ZEN REPORT</h3>
 
         <p>
-          Segnala una persona, un gruppo o un problema
-          direttamente al nostro staff.
+          Segnala problemi o situazioni direttamente allo staff.
         </p>
       </div>
 
-      <div class="card-link">FAI UN REPORT →</div>
+      <span class="card-link">
+        FAI UN REPORT →
+      </span>
 
     </a>
 
 
-    <a class="card" href="#collab" id="collab">
+    <a class="card" href="#collab">
 
       <div>
         <div class="icon">🤝</div>
 
-        <h3>ZEN COLLAB / SPONSOR</h3>
+        <h3>SPONSOR</h3>
 
         <p>
-          Proponi una collaborazione o una sponsorizzazione
-          tra ZEN777 e la tua community.
+          Proponi collaborazioni e sponsorizzazioni con ZEN777.
         </p>
       </div>
 
-      <div class="card-link">INVIA RICHIESTA →</div>
+      <span class="card-link">
+        PROPONI COLLAB →
+      </span>
 
     </a>
 
 
-    <a class="card" href="#shop" id="shop">
+    <a class="card" href="#shop">
 
       <div>
         <div class="icon">🛍️</div>
@@ -552,11 +812,13 @@
         <h3>ZEN SHOP</h3>
 
         <p>
-          Accedi allo shop ufficiale ZEN777.
+          Il nuovo Shop ufficiale ZEN777.
         </p>
       </div>
 
-      <div class="card-link">VISITA SHOP →</div>
+      <span class="card-link">
+        VISITA SHOP →
+      </span>
 
     </a>
 
@@ -569,18 +831,18 @@
 
 <section id="zenbot">
 
-  <div class="bot-section">
+  <div class="feature">
 
-    <div class="bot-image">
+    <div class="feature-image">
 
       <img
         src="https://files.catbox.moe/du36d3.png"
-        alt="ZENBOT banner">
+        alt="ZENBOT">
 
     </div>
 
 
-    <div class="bot-info">
+    <div class="feature-info">
 
       <small>ZENBOT 777</small>
 
@@ -613,17 +875,17 @@
 
     <small>ZEN REPORT</small>
 
-    <h2>Hai riscontrato un problema?</h2>
+    <h2>Qualcosa non va?</h2>
 
     <p>
-      Utilizza il sistema ufficiale ZEN Report per
-      segnalare una persona, un gruppo o un problema.
+      Utilizza il sistema ufficiale ZEN Report
+      per segnalare una situazione allo staff.
     </p>
 
   </div>
 
 
-  <div class="bot-image">
+  <div class="visual-card">
 
     <img
       src="https://files.catbox.moe/i7f05a.jpeg"
@@ -631,33 +893,166 @@
 
   </div>
 
+
+  <div class="section-button">
+
+    <a class="button button-red" href="#">
+      FAI UN REPORT
+    </a>
+
+  </div>
+
 </section>
 
 
-<!-- COLLAB -->
+<!-- SPONSOR -->
 
-<section>
+<section id="collab">
 
   <div class="section-title">
 
-    <small>ZEN COLLAB / SPONSOR</small>
+    <small>ZEN SPONSOR / COLLAB</small>
 
     <h2>Costruiamo qualcosa insieme.</h2>
 
     <p>
       Hai una community, un progetto o un'attività?
-      Proponi una collaborazione o una sponsorizzazione
-      a ZEN777.
+      Proponi una collaborazione a ZEN777.
     </p>
 
   </div>
 
 
-  <div class="bot-image">
+  <div class="visual-card">
 
     <img
       src="https://files.catbox.moe/mrhbtq.jpeg"
-      alt="ZEN Collaboration and Sponsor">
+      alt="ZEN Sponsor">
+
+  </div>
+
+
+  <div class="section-button">
+
+    <a class="button button-red" href="#">
+      INVIA RICHIESTA
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- SHOP -->
+
+<section id="shop">
+
+  <div class="section-title">
+
+    <small>ZEN SHOP</small>
+
+    <h2>Il prossimo livello.</h2>
+
+    <p>
+      Il nuovo Shop ufficiale ZEN777 è in arrivo.
+    </p>
+
+  </div>
+
+
+  <div class="card" style="max-width:700px;margin:auto;text-align:center;">
+
+    <div class="icon">🛍️</div>
+
+    <h3>ZEN SHOP</h3>
+
+    <p>
+      Stiamo preparando il nuovo Shop ZEN777.
+    </p>
+
+    <div style="margin-top:25px;">
+
+      <a class="button button-red" href="#">
+        APRI SHOP
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- STAFF -->
+
+<section id="staff">
+
+  <div class="section-title">
+
+    <small>ZEN777 STAFF</small>
+
+    <h2>Le persone dietro ZEN.</h2>
+
+    <p>
+      Il team che costruisce e gestisce l'ecosistema ZEN777.
+    </p>
+
+  </div>
+
+
+  <div class="staff-grid">
+
+    <div class="staff-card">
+
+      <img
+        src="https://files.catbox.moe/y7y9qn.jpeg"
+        alt="Dryzen">
+
+      <div>
+
+        <div class="staff-role">
+          STAFF
+        </div>
+
+        <div class="staff-name">
+          禅 | 𓆩𝕯𝓻𝔂𝓏𝖊𝖓𓆪 ⁷⁷⁷
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="staff-card">
+
+      <div style="
+        width:76px;
+        height:76px;
+        border-radius:14px;
+        border:1px solid rgba(255,255,255,.08);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#555;
+        font-size:10px;
+        text-align:center;
+      ">
+        SKY
+      </div>
+
+      <div>
+
+        <div class="staff-role">
+          STAFF
+        </div>
+
+        <div class="staff-name">
+          禅 | 𓆩スカイ/𝓢𝓴𝔂𓆪 ⁷⁷⁷
+        </div>
+
+      </div>
+
+    </div>
 
   </div>
 
@@ -676,7 +1071,7 @@
 
     <p>
       WhatsApp è la piattaforma principale di ZEN777.
-      Siamo presenti anche su Telegram e Discord.
+      Telegram e Discord sono piattaforme secondarie.
     </p>
 
   </div>
@@ -705,6 +1100,10 @@
 
     <div class="community-card">
 
+      <span class="main-label">
+        SECONDARY PLATFORM
+      </span>
+
       <h3>Telegram</h3>
 
       <p>
@@ -715,6 +1114,10 @@
 
 
     <div class="community-card">
+
+      <span class="main-label">
+        SECONDARY PLATFORM
+      </span>
 
       <h3>Discord</h3>
 
@@ -733,7 +1136,7 @@
 
 <footer>
 
-  <strong>𝐙𝐄𝐍𝟕𝟕𝟕//輝く時</strong>
+  <strong>𝐙𝐄𝐍𝟕𝟕𝟕 // 輝く時</strong>
 
   <br><br>
 

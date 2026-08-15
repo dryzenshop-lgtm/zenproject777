@@ -1,389 +1,728 @@
-/* =========================================
-   ZEN777 // SUPABASE
+/* =========================================================
+   ZEN777 // SUPABASE CONNECTOR
    REPORT + SPONSOR
-========================================= */
+========================================================= */
 
-const SUPABASE_URL =
-    "https://qmjhtboctxmjxnufxejx.supabase.co";
+(function () {
 
-const SUPABASE_KEY =
-    "sb_publishable_E-x5RyoBqWvAty80zPo6Eg_5CEvXUON";
+    "use strict";
 
 
-async function zenSupabaseInsert(table, data) {
+    /* =====================================================
+       CONFIG
+    ===================================================== */
 
-    const response = await fetch(
-        `${SUPABASE_URL}/rest/v1/${table}`,
-        {
-            method: "POST",
+    const SUPABASE_URL =
+        "https://qmjhtboctxmjxnufxejx.supabase.co";
 
-            headers: {
-                "apikey": SUPABASE_KEY,
-                "Authorization": `Bearer ${SUPABASE_KEY}`,
-                "Content-Type": "application/json",
-                "Prefer": "return=minimal"
-            },
-
-            body: JSON.stringify(data)
-        }
-    );
-
-    if (!response.ok) {
-
-        let errorText = "";
-
-        try {
-            errorText = await response.text();
-        } catch {
-            errorText = "Errore sconosciuto";
-        }
-
-        console.error(
-            `ZEN777 Supabase error [${table}]:`,
-            errorText
-        );
-
-        throw new Error(
-            `Errore durante il salvataggio della richiesta.`
-        );
-    }
-
-    return true;
-}
+    const SUPABASE_KEY =
+        "sb_publishable_E-x5RyoBqWvAty80zPo6Eg_5CEvXUON";
 
 
-/* =========================================
-   REPORT
-========================================= */
+    /* =====================================================
+       SUPABASE INSERT
+    ===================================================== */
 
-const zenReportForm =
-    document.getElementById("reportForm");
+    async function insertIntoSupabase(table, data) {
 
+        const response = await fetch(
+            SUPABASE_URL +
+            "/rest/v1/" +
+            table,
+            {
+                method: "POST",
 
-if (zenReportForm) {
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization":
+                        "Bearer " + SUPABASE_KEY,
+                    "Content-Type":
+                        "application/json",
+                    "Prefer":
+                        "return=minimal"
+                },
 
-    zenReportForm.addEventListener(
-        "submit",
-        async function(event) {
-
-            event.preventDefault();
-
-            const submitButton =
-                this.querySelector(
-                    'button[type="submit"]'
-                );
-
-            const originalText =
-                submitButton
-                    ? submitButton.textContent
-                    : "";
-
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent =
-                    "INVIO IN CORSO...";
+                body: JSON.stringify(data)
             }
+        );
+
+
+        if (!response.ok) {
+
+            let error = "";
 
             try {
+                error = await response.text();
+            } catch (_) {
+                error = "Unknown error";
+            }
 
-                const platform =
-                    document.getElementById(
-                        "reportPlatform"
-                    )?.value || "";
+            console.error(
+                "ZEN777 SUPABASE ERROR:",
+                error
+            );
 
-                const target =
-                    document.getElementById(
-                        "reportTarget"
-                    )?.value.trim() || "";
+            throw new Error(
+                "Supabase ha rifiutato la richiesta."
+            );
+        }
 
-                const contact =
-                    document.getElementById(
-                        "reportContact"
-                    )?.value.trim() || "";
-
-                const description =
-                    document.getElementById(
-                        "reportDescription"
-                    )?.value.trim() || "";
-
-                const anonymous =
-                    document.getElementById(
-                        "anonymous"
-                    )?.checked || false;
+        return true;
+    }
 
 
-                if (!platform) {
-                    throw new Error(
-                        "Seleziona una piattaforma."
-                    );
-                }
+    /* =====================================================
+       ZEN ID
+    ===================================================== */
 
-                if (!target) {
-                    throw new Error(
-                        "Inserisci il numero o username."
-                    );
-                }
+    function getZenId() {
 
-                if (!description) {
-                    throw new Error(
-                        "Inserisci una descrizione."
-                    );
-                }
+        try {
+
+            if (
+                typeof window.zenId !==
+                "undefined"
+            ) {
+                return window.zenId;
+            }
+
+        } catch (_) {}
 
 
-                await zenSupabaseInsert(
-                    "reports",
-                    {
-                        platform: platform,
-                        target: target,
-                        contact: anonymous
-                            ? null
-                            : contact,
-                        description: description,
-                        anonymous: anonymous,
-                        created_at:
-                            new Date().toISOString()
-                    }
+        try {
+
+            if (
+                typeof zenId !==
+                "undefined"
+            ) {
+                return zenId;
+            }
+
+        } catch (_) {}
+
+
+        return null;
+    }
+
+
+    /* =====================================================
+       CUSTOM SUCCESS MESSAGE
+    ===================================================== */
+
+    function successMessage(message) {
+
+        alert(message);
+
+    }
+
+
+    /* =====================================================
+       CUSTOM ERROR MESSAGE
+    ===================================================== */
+
+    function errorMessage(message) {
+
+        alert(
+            "❌ " + message
+        );
+
+    }
+
+
+    /* =====================================================
+       REPORT
+    ===================================================== */
+
+    function submitReport(form) {
+
+        const platformElement =
+            document.getElementById(
+                "reportPlatform"
+            );
+
+        const targetElement =
+            document.getElementById(
+                "reportTarget"
+            );
+
+        const contactElement =
+            document.getElementById(
+                "reportContact"
+            );
+
+        const descriptionElement =
+            document.getElementById(
+                "reportDescription"
+            );
+
+        const anonymousElement =
+            document.getElementById(
+                "anonymous"
+            );
+
+
+        const platform =
+            platformElement
+                ? platformElement.value.trim()
+                : "";
+
+        const target =
+            targetElement
+                ? targetElement.value.trim()
+                : "";
+
+        const contact =
+            contactElement
+                ? contactElement.value.trim()
+                : "";
+
+        const description =
+            descriptionElement
+                ? descriptionElement.value.trim()
+                : "";
+
+        const anonymous =
+            anonymousElement
+                ? anonymousElement.checked
+                : false;
+
+
+        /* ---------------------------------------------
+           VALIDATION
+        --------------------------------------------- */
+
+        if (!platform) {
+
+            errorMessage(
+                "Seleziona WhatsApp, Telegram o Discord."
+            );
+
+            return;
+
+        }
+
+
+        if (!target) {
+
+            errorMessage(
+                "Inserisci il numero o username da segnalare."
+            );
+
+            return;
+
+        }
+
+
+        if (!description) {
+
+            errorMessage(
+                "Inserisci una descrizione del report."
+            );
+
+            return;
+
+        }
+
+
+        /* ---------------------------------------------
+           DATA
+        --------------------------------------------- */
+
+        const data = {
+
+            platform: platform,
+
+            target: target,
+
+            contact:
+                anonymous
+                    ? null
+                    : contact,
+
+            description:
+                description,
+
+            anonymous:
+                anonymous,
+
+            zen_id:
+                getZenId(),
+
+            created_at:
+                new Date().toISOString()
+
+        };
+
+
+        /* ---------------------------------------------
+           BUTTON
+        --------------------------------------------- */
+
+        const button =
+            form.querySelector(
+                'button[type="submit"]'
+            );
+
+        const oldText =
+            button
+                ? button.textContent
+                : "";
+
+
+        if (button) {
+
+            button.disabled = true;
+
+            button.textContent =
+                "INVIO...";
+
+        }
+
+
+        /* ---------------------------------------------
+           SEND
+        --------------------------------------------- */
+
+        insertIntoSupabase(
+            "reports",
+            data
+        )
+
+        .then(function () {
+
+            successMessage(
+                "✅ Report inviato correttamente."
+            );
+
+
+            if (
+                typeof closeModal ===
+                "function"
+            ) {
+
+                closeModal(
+                    "reportModal"
                 );
 
-
-                alert(
-                    "✅ Report inviato correttamente."
-                );
+            }
 
 
-                this.reset();
+            form.reset();
 
 
-                document
-                    .querySelectorAll(
-                        ".platform-button"
-                    )
-                    .forEach(function(button) {
+            document
+                .querySelectorAll(
+                    ".platform-button"
+                )
+                .forEach(
+                    function (button) {
+
                         button.classList.remove(
                             "active"
                         );
-                    });
 
-
-                const platformInput =
-                    document.getElementById(
-                        "reportPlatform"
-                    );
-
-                if (platformInput) {
-                    platformInput.value = "";
-                }
-
-
-                const targetInput =
-                    document.getElementById(
-                        "reportTarget"
-                    );
-
-                if (targetInput) {
-                    targetInput.placeholder =
-                        "Seleziona prima la piattaforma";
-                }
-
-
-                const targetLabel =
-                    document.getElementById(
-                        "targetLabel"
-                    );
-
-                if (targetLabel) {
-                    targetLabel.textContent =
-                        "NUMERO / USERNAME";
-                }
-
-
-                if (typeof closeModal === "function") {
-                    closeModal("reportModal");
-                }
-
-            } catch (error) {
-
-                console.error(
-                    "ZEN777 REPORT:",
-                    error
-                );
-
-                alert(
-                    "❌ " +
-                    (
-                        error.message ||
-                        "Impossibile inviare il report."
-                    )
-                );
-
-            } finally {
-
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent =
-                        originalText;
-                }
-
-            }
-
-        }
-    );
-}
-
-
-/* =========================================
-   SPONSOR
-========================================= */
-
-const zenSponsorForm =
-    document.getElementById("sponsorForm");
-
-
-if (zenSponsorForm) {
-
-    zenSponsorForm.addEventListener(
-        "submit",
-        async function(event) {
-
-            event.preventDefault();
-
-            const submitButton =
-                this.querySelector(
-                    'button[type="submit"]'
-                );
-
-            const originalText =
-                submitButton
-                    ? submitButton.textContent
-                    : "";
-
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent =
-                    "INVIO IN CORSO...";
-            }
-
-            try {
-
-                const name =
-                    document.getElementById(
-                        "sponsorName"
-                    )?.value.trim() || "";
-
-                const community =
-                    document.getElementById(
-                        "sponsorCommunity"
-                    )?.value.trim() || "";
-
-                const type =
-                    document.getElementById(
-                        "sponsorType"
-                    )?.value || "";
-
-                const contact =
-                    document.getElementById(
-                        "sponsorContact"
-                    )?.value.trim() || "";
-
-                const description =
-                    document.getElementById(
-                        "sponsorDescription"
-                    )?.value.trim() || "";
-
-
-                if (!name) {
-                    throw new Error(
-                        "Inserisci il nome o nickname."
-                    );
-                }
-
-                if (!community) {
-                    throw new Error(
-                        "Inserisci la community o il progetto."
-                    );
-                }
-
-                if (!type) {
-                    throw new Error(
-                        "Seleziona il tipo di richiesta."
-                    );
-                }
-
-                if (!contact) {
-                    throw new Error(
-                        "Inserisci un contatto."
-                    );
-                }
-
-                if (!description) {
-                    throw new Error(
-                        "Descrivi la tua proposta."
-                    );
-                }
-
-
-                await zenSupabaseInsert(
-                    "sponsor_requests",
-                    {
-                        name: name,
-                        community: community,
-                        type: type,
-                        contact: contact,
-                        description: description,
-                        created_at:
-                            new Date().toISOString()
                     }
                 );
 
 
-                alert(
-                    "✅ Richiesta sponsor inviata correttamente."
+            const hidden =
+                document.getElementById(
+                    "reportPlatform"
                 );
 
+            if (hidden) {
+                hidden.value = "";
+            }
 
-                this.reset();
 
-
-                if (
-                    typeof closeModal === "function"
-                ) {
-                    closeModal(
-                        "sponsorModal"
-                    );
-                }
-
-            } catch (error) {
-
-                console.error(
-                    "ZEN777 SPONSOR:",
-                    error
+            const target =
+                document.getElementById(
+                    "reportTarget"
                 );
 
-                alert(
-                    "❌ " +
-                    (
-                        error.message ||
-                        "Impossibile inviare la richiesta."
-                    )
-                );
+            if (target) {
 
-            } finally {
-
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent =
-                        originalText;
-                }
+                target.placeholder =
+                    "Seleziona prima la piattaforma";
 
             }
 
+
+            const label =
+                document.getElementById(
+                    "targetLabel"
+                );
+
+            if (label) {
+
+                label.textContent =
+                    "NUMERO / USERNAME";
+
+            }
+
+        })
+
+        .catch(function (error) {
+
+            console.error(
+                "ZEN777 REPORT:",
+                error
+            );
+
+            errorMessage(
+                error.message ||
+                "Impossibile inviare il report."
+            );
+
+        })
+
+        .finally(function () {
+
+            if (button) {
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    oldText;
+
+            }
+
+        });
+
+    }
+
+
+    /* =====================================================
+       SPONSOR
+    ===================================================== */
+
+    function submitSponsor(form) {
+
+        const nameElement =
+            document.getElementById(
+                "sponsorName"
+            );
+
+        const communityElement =
+            document.getElementById(
+                "sponsorCommunity"
+            );
+
+        const typeElement =
+            document.getElementById(
+                "sponsorType"
+            );
+
+        const contactElement =
+            document.getElementById(
+                "sponsorContact"
+            );
+
+        const descriptionElement =
+            document.getElementById(
+                "sponsorDescription"
+            );
+
+
+        const name =
+            nameElement
+                ? nameElement.value.trim()
+                : "";
+
+        const community =
+            communityElement
+                ? communityElement.value.trim()
+                : "";
+
+        const type =
+            typeElement
+                ? typeElement.value.trim()
+                : "";
+
+        const contact =
+            contactElement
+                ? contactElement.value.trim()
+                : "";
+
+        const description =
+            descriptionElement
+                ? descriptionElement.value.trim()
+                : "";
+
+
+        /* ---------------------------------------------
+           VALIDATION
+        --------------------------------------------- */
+
+        if (!name) {
+
+            errorMessage(
+                "Inserisci il tuo nome o nickname."
+            );
+
+            return;
+
         }
+
+
+        if (!community) {
+
+            errorMessage(
+                "Inserisci la community o il progetto."
+            );
+
+            return;
+
+        }
+
+
+        if (!type) {
+
+            errorMessage(
+                "Seleziona il tipo di richiesta."
+            );
+
+            return;
+
+        }
+
+
+        if (!contact) {
+
+            errorMessage(
+                "Inserisci un contatto."
+            );
+
+            return;
+
+        }
+
+
+        if (!description) {
+
+            errorMessage(
+                "Descrivi la tua proposta."
+            );
+
+            return;
+
+        }
+
+
+        /* ---------------------------------------------
+           DATA
+        --------------------------------------------- */
+
+        const data = {
+
+            name: name,
+
+            community: community,
+
+            type: type,
+
+            contact: contact,
+
+            description: description,
+
+            zen_id:
+                getZenId(),
+
+            created_at:
+                new Date().toISOString()
+
+        };
+
+
+        /* ---------------------------------------------
+           BUTTON
+        --------------------------------------------- */
+
+        const button =
+            form.querySelector(
+                'button[type="submit"]'
+            );
+
+        const oldText =
+            button
+                ? button.textContent
+                : "";
+
+
+        if (button) {
+
+            button.disabled = true;
+
+            button.textContent =
+                "INVIO...";
+
+        }
+
+
+        /* ---------------------------------------------
+           SEND
+        --------------------------------------------- */
+
+        insertIntoSupabase(
+            "sponsor_requests",
+            data
+        )
+
+        .then(function () {
+
+            successMessage(
+                "✅ Richiesta di collaborazione inviata correttamente."
+            );
+
+
+            if (
+                typeof closeModal ===
+                "function"
+            ) {
+
+                closeModal(
+                    "sponsorModal"
+                );
+
+            }
+
+
+            form.reset();
+
+        })
+
+        .catch(function (error) {
+
+            console.error(
+                "ZEN777 SPONSOR:",
+                error
+            );
+
+            errorMessage(
+                error.message ||
+                "Impossibile inviare la richiesta."
+            );
+
+        })
+
+        .finally(function () {
+
+            if (button) {
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    oldText;
+
+            }
+
+        });
+
+    }
+
+
+    /* =====================================================
+       CAPTURE SUBMIT
+       
+       IMPORTANT:
+       capture=true permette a questo script
+       di intercettare il form PRIMA del vecchio
+       listener presente nell'index.html.
+    ===================================================== */
+
+    document.addEventListener(
+        "submit",
+        function (event) {
+
+            const form =
+                event.target;
+
+
+            if (
+                !form ||
+                !form.id
+            ) {
+                return;
+            }
+
+
+            /* -----------------------------------------
+               REPORT
+            ----------------------------------------- */
+
+            if (
+                form.id ===
+                "reportForm"
+            ) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                if (
+                    event.stopImmediatePropagation
+                ) {
+
+                    event.stopImmediatePropagation();
+
+                }
+
+
+                submitReport(form);
+
+                return;
+
+            }
+
+
+            /* -----------------------------------------
+               SPONSOR
+            ----------------------------------------- */
+
+            if (
+                form.id ===
+                "sponsorForm"
+            ) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                if (
+                    event.stopImmediatePropagation
+                ) {
+
+                    event.stopImmediatePropagation();
+
+                }
+
+
+                submitSponsor(form);
+
+                return;
+
+            }
+
+        },
+
+        true
     );
-}
 
 
-console.log(
-    "%cZEN777 SUPABASE CONNECTED",
-    "color:#ff0000;font-weight:900;font-size:16px"
-);
+    /* =====================================================
+       READY
+    ===================================================== */
+
+    console.log(
+        "%cZEN777",
+        "color:#ff0000;font-size:22px;font-weight:900;"
+    );
+
+    console.log(
+        "%cSUPABASE CONNECTED",
+        "color:#ffffff;font-size:13px;font-weight:900;"
+    );
+
+})();

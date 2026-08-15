@@ -820,9 +820,7 @@
 
     } else {
 
-        start();
-
-    }
-
-})();
+        console.log("ZEN777 MOONLIGHT SCRIPT CARICATO");
+console.log("STAFF ELEMENTS:", document.querySelectorAll('[class*="staff"]'));
+console.log("ALL GRIDS:", document.querySelectorAll('[class*="grid"]'));
        

@@ -723,25 +723,31 @@
     console.log(
         "%cSUPABASE CONNECTED",
         "color:#ffffff;font-size:13px;font-weight:/* =========================================================
-   ZEN777 // STAFF
-   MOONLIGHT
+
+/* =========================================================
+   ZEN777 // MOONLIGHT STAFF
 ========================================================= */
 
 (function () {
 
     function addMoonlight() {
 
-        const staffGrid =
-            document.querySelector(".staff-grid");
+        // Cerca il contenitore Staff in diversi modi
+        const staffContainer =
+            document.querySelector(".staff-grid") ||
+            document.querySelector("#staff .grid") ||
+            document.querySelector("#staff .cards") ||
+            document.querySelector("#staff");
 
-        if (!staffGrid) {
+        if (!staffContainer) {
+            console.log("ZEN777: contenitore Staff non trovato.");
             return;
         }
 
         // Evita duplicati
         if (
-            staffGrid.querySelector(
-                '[data-zen-staff="moonlight"]'
+            document.querySelector(
+                '[data-zen-member="moonlight"]'
             )
         ) {
             return;
@@ -750,17 +756,17 @@
         const card =
             document.createElement("div");
 
-        card.className = "staff-card";
-
         card.setAttribute(
-            "data-zen-staff",
+            "data-zen-member",
             "moonlight"
         );
+
+        card.className = "staff-card";
 
         card.innerHTML = `
             <img
                 src="https://i.imghippo.com/files/ftTb5220cB.jpeg"
-                alt="禅 | 𓆩m⃦o⃦o⃦n⃦l⃦i⃦g⃦h⃦t⃦𓆪 ⁷⁷⁷"
+                alt="Moonlight"
                 class="staff-photo"
                 loading="lazy"
             >
@@ -782,22 +788,41 @@
             </div>
         `;
 
-        staffGrid.appendChild(card);
+        staffContainer.appendChild(card);
+
+        console.log(
+            "ZEN777: Moonlight aggiunto allo Staff."
+        );
     }
 
 
-    if (document.readyState === "loading") {
+    function start() {
+
+        addMoonlight();
+
+        // Se lo Staff viene generato dinamicamente
+        setTimeout(addMoonlight, 500);
+        setTimeout(addMoonlight, 1500);
+        setTimeout(addMoonlight, 3000);
+
+    }
+
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
 
         document.addEventListener(
             "DOMContentLoaded",
-            addMoonlight
+            start
         );
 
     } else {
 
-        addMoonlight();
+        start();
 
     }
 
 })();
-
+       

@@ -722,7 +722,82 @@
 
     console.log(
         "%cSUPABASE CONNECTED",
-        "color:#ffffff;font-size:13px;font-weight:900;"
-    );
+        "color:#ffffff;font-size:13px;font-weight:/* =========================================================
+   ZEN777 // STAFF
+   MOONLIGHT
+========================================================= */
+
+(function () {
+
+    function addMoonlight() {
+
+        const staffGrid =
+            document.querySelector(".staff-grid");
+
+        if (!staffGrid) {
+            return;
+        }
+
+        // Evita duplicati
+        if (
+            staffGrid.querySelector(
+                '[data-zen-staff="moonlight"]'
+            )
+        ) {
+            return;
+        }
+
+        const card =
+            document.createElement("div");
+
+        card.className = "staff-card";
+
+        card.setAttribute(
+            "data-zen-staff",
+            "moonlight"
+        );
+
+        card.innerHTML = `
+            <img
+                src="https://i.imghippo.com/files/ftTb5220cB.jpeg"
+                alt="禅 | 𓆩m⃦o⃦o⃦n⃦l⃦i⃦g⃦h⃦t⃦𓆪 ⁷⁷⁷"
+                class="staff-photo"
+                loading="lazy"
+            >
+
+            <div class="staff-info">
+
+                <div class="staff-role">
+                    STAFF SOCIAL MANAGEMENT
+                </div>
+
+                <div class="staff-name">
+                    禅 | 𓆩m⃦o⃦o⃦n⃦l⃦i⃦g⃦h⃦t⃦𓆪 ⁷⁷⁷
+                </div>
+
+                <div class="staff-desc">
+                    Social Management ZEN777
+                </div>
+
+            </div>
+        `;
+
+        staffGrid.appendChild(card);
+    }
+
+
+    if (document.readyState === "loading") {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            addMoonlight
+        );
+
+    } else {
+
+        addMoonlight();
+
+    }
 
 })();
+

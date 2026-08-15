@@ -3,33 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
-<meta name="description" content="ZEN777 — Community, ZenBot, Shop, Sponsor e molto altro.">
+<meta name="theme-color" content="#050000">
+<meta name="description" content="ZEN777 — The ZEN Universe">
 
-<title>ZEN777 // 輝く時</title>
+<title>ZEN777 // THE ZEN UNIVERSE</title>
 
 <style>
 :root{
     --bg:#030303;
     --bg2:#070707;
-    --card:#0b0b0b;
-    --card2:#101010;
-
+    --card:rgba(15,15,15,.72);
     --red:#e00000;
-    --red2:#ff1717;
-    --red3:#ff4b4b;
-
+    --red2:#ff1616;
+    --red3:#ff4545;
     --white:#fff;
     --gray:#999;
-    --gray2:#666;
-
+    --gray2:#555;
     --line:rgba(255,255,255,.09);
-    --redline:rgba(255,0,0,.25);
-
-    --shadow:
-        0 25px 80px rgba(0,0,0,.65);
-
-    --radius:24px;
+    --glow:rgba(255,0,0,.35);
 }
 
 *{
@@ -43,102 +34,49 @@ html{
 }
 
 body{
+    min-height:100vh;
     background:
-        radial-gradient(
-            circle at 50% -15%,
-            rgba(255,0,0,.20),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 100% 40%,
-            rgba(255,0,0,.045),
-            transparent 25%
-        ),
+        radial-gradient(circle at 50% -15%,rgba(255,0,0,.22),transparent 32%),
+        radial-gradient(circle at 10% 70%,rgba(100,0,0,.08),transparent 30%),
         #030303;
-
-    color:#fff;
-
-    font-family:
-        Inter,
-        "Helvetica Neue",
-        Arial,
-        sans-serif;
-
+    color:white;
+    font-family:Inter,"Helvetica Neue",Arial,sans-serif;
     overflow-x:hidden;
     padding-bottom:120px;
 }
 
-/* =========================================
-   BACKGROUND EFFECTS
-========================================= */
+/* =========================
+   GLOBAL ATMOSPHERE
+========================= */
 
 body::before{
     content:"";
     position:fixed;
     inset:0;
-
     pointer-events:none;
-
+    z-index:9998;
+    opacity:.035;
     background-image:
-        linear-gradient(
-            rgba(255,255,255,.018) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.018) 1px,
-            transparent 1px
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            #fff 4px
         );
-
-    background-size:70px 70px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 85%
-        );
-
-    z-index:-5;
 }
 
 body::after{
     content:"";
-
     position:fixed;
-
-    width:650px;
-    height:650px;
-
+    width:700px;
+    height:700px;
     left:50%;
-    top:-360px;
-
-    transform:translateX(-50%);
-
-    background:#f00000;
-
-    opacity:.08;
-
-    filter:blur(180px);
-
+    top:50%;
+    transform:translate(-50%,-50%);
+    background:rgba(255,0,0,.035);
+    filter:blur(120px);
     pointer-events:none;
-
-    z-index:-6;
-
-    animation:
-        ambientGlow 8s ease-in-out infinite alternate;
-}
-
-@keyframes ambientGlow{
-    from{
-        transform:translateX(-50%) scale(.85);
-        opacity:.055;
-    }
-
-    to{
-        transform:translateX(-50%) scale(1.15);
-        opacity:.12;
-    }
+    z-index:-1;
 }
 
 a{
@@ -146,1365 +84,955 @@ a{
     text-decoration:none;
 }
 
-button,
-input,
-textarea,
-select{
+button{
     font:inherit;
 }
 
-/* =========================================
-   FLOATING PARTICLES
-========================================= */
+button,
+a{
+    -webkit-tap-highlight-color:transparent;
+}
 
-.particles{
+/* =========================
+   CURSOR GLOW
+========================= */
+
+.cursor-glow{
     position:fixed;
-    inset:0;
-
-    overflow:hidden;
-
-    pointer-events:none;
-
-    z-index:-1;
-}
-
-.particle{
-    position:absolute;
-
-    width:2px;
-    height:2px;
-
+    width:320px;
+    height:320px;
     border-radius:50%;
-
-    background:#ff2222;
-
-    box-shadow:
-        0 0 10px #ff0000;
-
-    opacity:.35;
-
-    animation:
-        floatParticle linear infinite;
+    pointer-events:none;
+    z-index:9997;
+    background:radial-gradient(
+        circle,
+        rgba(255,0,0,.13),
+        transparent 65%
+    );
+    transform:translate(-50%,-50%);
+    transition:opacity .3s;
+    mix-blend-mode:screen;
 }
 
-.particle:nth-child(1){
-    left:8%;
-    top:70%;
-    animation-duration:12s;
-}
-
-.particle:nth-child(2){
-    left:17%;
-    top:50%;
-    animation-duration:17s;
-}
-
-.particle:nth-child(3){
-    left:28%;
-    top:85%;
-    animation-duration:14s;
-}
-
-.particle:nth-child(4){
-    left:44%;
-    top:60%;
-    animation-duration:20s;
-}
-
-.particle:nth-child(5){
-    left:59%;
-    top:78%;
-    animation-duration:15s;
-}
-
-.particle:nth-child(6){
-    left:72%;
-    top:42%;
-    animation-duration:19s;
-}
-
-.particle:nth-child(7){
-    left:84%;
-    top:75%;
-    animation-duration:13s;
-}
-
-.particle:nth-child(8){
-    left:93%;
-    top:55%;
-    animation-duration:18s;
-}
-
-@keyframes floatParticle{
-    0%{
-        transform:translateY(40px);
-        opacity:0;
-    }
-
-    20%{
-        opacity:.45;
-    }
-
-    80%{
-        opacity:.25;
-    }
-
-    100%{
-        transform:translateY(-500px);
-        opacity:0;
-    }
-}
-
-/* =========================================
-   NAVBAR
-========================================= */
+/* =========================
+   NAV
+========================= */
 
 header{
-    position:sticky;
+    position:fixed;
     top:0;
+    left:0;
+    width:100%;
+    height:72px;
     z-index:5000;
-
-    height:78px;
-
-    background:
-        rgba(3,3,3,.72);
-
-    backdrop-filter:
-        blur(24px)
-        saturate(160%);
-
-    border-bottom:
-        1px solid rgba(255,255,255,.07);
-
-    box-shadow:
-        0 10px 50px rgba(0,0,0,.35);
+    background:rgba(3,3,3,.62);
+    backdrop-filter:blur(25px);
+    border-bottom:1px solid rgba(255,255,255,.07);
 }
 
 .nav{
     width:min(1250px,92%);
-
     height:100%;
-
     margin:auto;
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
 }
 
 .logo{
-    position:relative;
-
-    font-size:21px;
-
-    font-weight:950;
-
-    letter-spacing:-.7px;
-}
-
-.logo::after{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    right:0;
-    bottom:-7px;
-
-    height:1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #ff0000,
-            transparent
-        );
-
-    opacity:.7;
+    font-size:20px;
+    font-weight:1000;
+    letter-spacing:-1px;
 }
 
 .logo span{
-    color:#ff1717;
-
-    text-shadow:
-        0 0 15px rgba(255,0,0,.5);
+    color:#f00000;
 }
 
 .nav-links{
     display:flex;
-
-    align-items:center;
-
-    gap:28px;
+    gap:26px;
 }
 
 .nav-links a{
-    position:relative;
-
-    color:#858585;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    transition:.25s;
-}
-
-.nav-links a::after{
-    content:"";
-
-    position:absolute;
-
-    left:50%;
-    bottom:-8px;
-
-    width:0;
-    height:1px;
-
-    background:#ff1111;
-
-    transform:translateX(-50%);
-
+    color:#888;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:1px;
     transition:.25s;
 }
 
 .nav-links a:hover{
     color:white;
+    text-shadow:0 0 15px red;
 }
 
-.nav-links a:hover::after{
-    width:100%;
+.nav-contact{
+    padding:10px 15px;
+    border-radius:10px;
+    background:#d90000;
+    font-size:10px;
+    font-weight:1000;
+    box-shadow:0 0 25px rgba(255,0,0,.12);
 }
 
-.nav-wa{
-    padding:12px 18px;
-
-    border-radius:11px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f00000,
-            #a90000
-        );
-
-    border:1px solid rgba(255,100,100,.25);
-
-    font-size:11px;
-
-    font-weight:950;
-
-    box-shadow:
-        0 0 25px rgba(255,0,0,.15);
-
-    transition:.25s;
+@media(max-width:800px){
+    .nav-links{
+        display:none;
+    }
 }
 
-.nav-wa:hover{
-    transform:translateY(-2px);
+/* =========================
+   HERO / UNIVERSE
+========================= */
 
-    box-shadow:
-        0 10px 35px rgba(255,0,0,.25);
-}
-
-/* =========================================
-   GLOBAL
-========================================= */
-
-.container{
-    width:min(1180px,92%);
-
-    margin:auto;
-}
-
-section{
+.hero{
     position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    padding-top:72px;
+}
 
+.stars{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    opacity:.45;
+    animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.15;transform:scale(.7)}
+    to{opacity:.9;transform:scale(1.4)}
+}
+
+.universe{
+    position:relative;
+    width:min(850px,95vw);
+    height:min(850px,95vw);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.orbit{
+    position:absolute;
+    border:1px solid rgba(255,0,0,.12);
+    border-radius:50%;
+    transform:rotate(-12deg);
+}
+
+.orbit.one{
+    width:70%;
+    height:40%;
+    animation:orbitSpin 18s linear infinite;
+}
+
+.orbit.two{
+    width:86%;
+    height:55%;
+    animation:orbitSpinReverse 25s linear infinite;
+}
+
+.orbit.three{
+    width:58%;
+    height:78%;
+    animation:orbitSpin 31s linear infinite;
+}
+
+@keyframes orbitSpin{
+    to{transform:rotate(348deg)}
+}
+
+@keyframes orbitSpinReverse{
+    to{transform:rotate(-372deg)}
+}
+
+/* =========================
+   ZEN CORE
+========================= */
+
+.zen-core{
+    position:relative;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(
+            circle at 45% 40%,
+            #300000,
+            #080000 48%,
+            #020202 72%
+        );
+    border:1px solid rgba(255,0,0,.45);
+    box-shadow:
+        0 0 40px rgba(255,0,0,.15),
+        inset 0 0 70px rgba(255,0,0,.13);
+    z-index:5;
+    animation:coreFloat 5s ease-in-out infinite;
+}
+
+@keyframes coreFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+.core-ring{
+    position:absolute;
+    inset:-16px;
+    border:1px solid rgba(255,0,0,.25);
+    border-radius:50%;
+    animation:ringSpin 12s linear infinite;
+}
+
+.core-ring::before,
+.core-ring::after{
+    content:"";
+    position:absolute;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#f00;
+    box-shadow:0 0 20px red;
+}
+
+.core-ring::before{
+    top:15px;
+    left:50%;
+}
+
+.core-ring::after{
+    bottom:15px;
+    right:50%;
+}
+
+@keyframes ringSpin{
+    to{transform:rotate(360deg)}
+}
+
+.core-logo{
+    text-align:center;
+    z-index:2;
+}
+
+.core-logo img{
+    width:145px;
+    height:145px;
+    object-fit:contain;
+    filter:
+        drop-shadow(0 0 25px rgba(255,0,0,.45));
+}
+
+.core-title{
+    margin-top:-5px;
+    font-size:22px;
+    font-weight:1000;
+    letter-spacing:4px;
+}
+
+.core-title span{
+    color:red;
+}
+
+.core-sub{
+    margin-top:7px;
+    font-size:8px;
+    color:#777;
+    letter-spacing:4px;
+}
+
+/* =========================
+   PLANETS
+========================= */
+
+.planet{
+    position:absolute;
+    width:115px;
+    height:115px;
+    border-radius:50%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    cursor:pointer;
+    z-index:10;
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #300000,
+            #0b0000 65%,
+            #020202
+        );
+    border:1px solid rgba(255,0,0,.35);
+    box-shadow:
+        inset 0 0 30px rgba(255,0,0,.15),
+        0 0 30px rgba(255,0,0,.08);
+    transition:.35s cubic-bezier(.2,.8,.2,1);
+}
+
+.planet:hover{
+    transform:scale(1.18);
+    border-color:red;
+    box-shadow:
+        0 0 45px rgba(255,0,0,.3),
+        inset 0 0 40px rgba(255,0,0,.2);
+}
+
+.planet-icon{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.planet-title{
+    font-size:11px;
+    font-weight:1000;
+    letter-spacing:1px;
+}
+
+.planet-small{
+    color:#666;
+    font-size:7px;
+    margin-top:4px;
+    letter-spacing:1px;
+}
+
+.p-bot{
+    top:4%;
+    left:17%;
+}
+
+.p-staff{
+    top:18%;
+    right:5%;
+}
+
+.p-shop{
+    bottom:7%;
+    right:12%;
+}
+
+.p-report{
+    bottom:12%;
+    left:5%;
+}
+
+.p-sponsor{
+    top:45%;
+    right:-1%;
+}
+
+@media(max-width:650px){
+
+    .universe{
+        width:100vw;
+        height:100vw;
+        min-height:600px;
+    }
+
+    .zen-core{
+        width:210px;
+        height:210px;
+    }
+
+    .core-logo img{
+        width:105px;
+        height:105px;
+    }
+
+    .planet{
+        width:82px;
+        height:82px;
+    }
+
+    .planet-icon{
+        font-size:18px;
+    }
+
+    .planet-title{
+        font-size:8px;
+    }
+
+    .planet-small{
+        display:none;
+    }
+
+    .p-bot{
+        left:4%;
+    }
+
+    .p-staff{
+        right:3%;
+    }
+
+    .p-sponsor{
+        right:0;
+    }
+
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    width:min(1180px,92%);
+    margin:auto;
     padding:120px 0;
 }
 
 .section-head{
     text-align:center;
-
-    margin-bottom:60px;
+    margin-bottom:55px;
 }
 
 .section-head small{
-    display:inline-block;
-
-    color:#ff3333;
-
-    font-size:10px;
-
-    font-weight:950;
-
+    color:#ff2525;
+    font-size:9px;
+    font-weight:1000;
     letter-spacing:4px;
-
-    padding:7px 12px;
-
-    border:
-        1px solid rgba(255,0,0,.18);
-
-    background:
-        rgba(255,0,0,.045);
-
-    border-radius:999px;
-
-    box-shadow:
-        inset 0 0 20px rgba(255,0,0,.025);
 }
 
 .section-head h2{
-    margin-top:17px;
-
-    font-size:
-        clamp(38px,6vw,72px);
-
-    line-height:.95;
-
+    margin-top:13px;
+    font-size:clamp(40px,7vw,75px);
     letter-spacing:-4px;
-
-    font-weight:950;
+    line-height:.95;
 }
 
 .section-head p{
-    max-width:680px;
-
+    max-width:650px;
     margin:20px auto 0;
-
     color:#777;
-
     line-height:1.8;
-
     font-size:14px;
 }
 
-/* =========================================
-   BUTTONS
-========================================= */
+/* =========================
+   GLASS CARD
+========================= */
 
-.btn{
-    position:relative;
-
-    display:inline-flex;
-
-    align-items:center;
-    justify-content:center;
-
-    min-height:49px;
-
-    padding:0 21px;
-
-    border-radius:12px;
-
-    border:1px solid var(--line);
-
-    font-size:11px;
-
-    font-weight:950;
-
-    letter-spacing:.3px;
-
-    transition:
-        transform .25s,
-        box-shadow .25s,
-        border .25s;
-
-    cursor:pointer;
-
-    overflow:hidden;
+.glass{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,20,20,.76),
+            rgba(5,5,5,.8)
+        );
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35),
+        inset 0 1px rgba(255,255,255,.035);
+    backdrop-filter:blur(20px);
 }
 
-.btn::before{
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    padding:0 22px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.1);
+    font-size:10px;
+    font-weight:1000;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+}
+
+.btn-red{
+    background:linear-gradient(135deg,#e00000,#8b0000);
+    border-color:#e00000;
+    box-shadow:0 10px 30px rgba(255,0,0,.12);
+}
+
+.btn-red:hover{
+    box-shadow:0 15px 45px rgba(255,0,0,.3);
+}
+
+.btn-dark{
+    background:#101010;
+}
+
+.btn-outline{
+    background:transparent;
+    color:#ff3333;
+    border-color:rgba(255,0,0,.35);
+}
+
+/* =========================
+   EYE
+========================= */
+
+.eye-stage{
+    position:relative;
+    width:min(900px,100%);
+    height:480px;
+    margin:auto;
+    overflow:hidden;
+    border-radius:35px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(150,0,0,.18),
+            transparent 60%
+        ),
+        #050505;
+}
+
+.eye{
+    position:relative;
+    width:min(650px,90%);
+    height:260px;
+    border-radius:50%;
+    background:
+        linear-gradient(
+            135deg,
+            #1b1b1b,
+            #050505
+        );
+    border:1px solid rgba(255,0,0,.45);
+    transform:rotate(-2deg);
+    box-shadow:
+        0 0 70px rgba(255,0,0,.15),
+        inset 0 0 50px rgba(255,0,0,.08);
+}
+
+.eye::before{
     content:"";
-
     position:absolute;
+    inset:18px;
+    border-radius:50%;
+    border-top:2px solid rgba(255,0,0,.18);
+    border-bottom:2px solid rgba(255,0,0,.12);
+}
 
+.iris{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:155px;
+    height:155px;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:
+        repeating-radial-gradient(
+            circle,
+            #350000 0,
+            #170000 8px,
+            #050505 15px
+        );
+    border:2px solid #e00000;
+    box-shadow:
+        0 0 35px red,
+        inset 0 0 30px rgba(255,0,0,.7);
+    transition:transform .08s linear;
+}
+
+.pupil{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:55px;
+    height:90px;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:#000;
+    box-shadow:0 0 25px rgba(255,0,0,.6);
+}
+
+.eye-label{
+    position:absolute;
+    bottom:35px;
+    text-align:center;
+    width:100%;
+    color:#555;
+    font-size:9px;
+    letter-spacing:4px;
+}
+
+.eye-live{
+    position:absolute;
+    top:30px;
+    left:35px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-size:8px;
+    color:#777;
+    letter-spacing:2px;
+}
+
+.live-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:red;
+    box-shadow:0 0 15px red;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:.2}
+}
+
+/* =========================
+   MIRROR
+========================= */
+
+.mirror-wrap{
+    display:flex;
+    justify-content:center;
+}
+
+.mirror{
+    position:relative;
+    width:min(500px,90vw);
+    height:650px;
+    border-radius:250px 250px 40px 40px;
+    overflow:hidden;
+    cursor:pointer;
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(255,0,0,.16),
+            transparent 30%
+        ),
+        linear-gradient(145deg,#1a1a1a,#030303);
+    border:1px solid rgba(255,0,0,.3);
+    box-shadow:
+        0 0 80px rgba(255,0,0,.1),
+        inset 0 0 80px rgba(255,0,0,.07);
+    transition:.7s;
+}
+
+.mirror:hover{
+    box-shadow:
+        0 0 120px rgba(255,0,0,.2),
+        inset 0 0 100px rgba(255,0,0,.12);
+}
+
+.mirror::before{
+    content:"";
+    position:absolute;
     inset:0;
-
     background:
         linear-gradient(
             110deg,
             transparent 30%,
-            rgba(255,255,255,.18),
-            transparent 70%
+            rgba(255,255,255,.07) 40%,
+            transparent 50%
         );
-
-    transform:translateX(-120%);
-
-    transition:.55s;
+    transform:translateX(-100%);
+    transition:1s;
 }
 
-.btn:hover::before{
-    transform:translateX(120%);
+.mirror:hover::before{
+    transform:translateX(100%);
 }
 
-.btn:hover{
-    transform:translateY(-3px);
-}
-
-.btn-red{
-    background:
-        linear-gradient(
-            135deg,
-            #f00000,
-            #a80000
-        );
-
-    border-color:#ff1b1b;
-
-    box-shadow:
-        0 12px 35px rgba(255,0,0,.13);
-}
-
-.btn-red:hover{
-    box-shadow:
-        0 18px 50px rgba(255,0,0,.27);
-}
-
-.btn-dark{
-    background:
-        rgba(255,255,255,.035);
-}
-
-.btn-dark:hover{
-    border-color:
-        rgba(255,255,255,.2);
-}
-
-.btn-outline{
-    color:#ff5555;
-
-    background:
-        rgba(255,0,0,.025);
-
-    border-color:
-        rgba(255,0,0,.35);
-}
-
-/* =========================================
-   HERO
-========================================= */
-
-.hero{
-    min-height:
-        calc(100vh - 78px);
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    padding:90px 0 110px;
-
-    overflow:hidden;
-}
-
-.hero::before{
-    content:"ZEN";
-
+.mirror-inner{
     position:absolute;
-
-    top:40%;
-
-    left:50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    font-size:
-        clamp(130px,25vw,360px);
-
-    font-weight:950;
-
-    letter-spacing:-25px;
-
-    color:transparent;
-
-    -webkit-text-stroke:
-        1px rgba(255,0,0,.035);
-
-    pointer-events:none;
-
-    white-space:nowrap;
-}
-
-.hero-inner{
-    position:relative;
-
-    z-index:2;
-
-    width:min(1000px,92%);
-
-    margin:auto;
-}
-
-.hero-badge{
-    display:inline-flex;
-
-    padding:9px 16px;
-
-    border-radius:999px;
-
-    background:
-        rgba(220,0,0,.06);
-
-    border:
-        1px solid rgba(255,0,0,.28);
-
-    color:#ff4444;
-
-    font-size:10px;
-
-    font-weight:950;
-
-    letter-spacing:3px;
-
-    margin-bottom:32px;
-
-    box-shadow:
-        0 0 30px rgba(255,0,0,.05);
-
-    animation:
-        badgePulse 3s ease-in-out infinite;
-}
-
-@keyframes badgePulse{
-    0%,100%{
-        box-shadow:
-            0 0 15px rgba(255,0,0,.04);
-    }
-
-    50%{
-        box-shadow:
-            0 0 35px rgba(255,0,0,.13);
-    }
-}
-
-.hero-image{
-    display:block;
-
-    width:min(650px,88%);
-
-    max-height:430px;
-
-    margin:0 auto 38px;
-
-    object-fit:contain;
-
-    border-radius:30px;
-
-    filter:
-        drop-shadow(
-            0 35px 75px rgba(0,0,0,.85)
-        )
-        drop-shadow(
-            0 0 35px rgba(255,0,0,.08)
-        );
-
-    animation:
-        heroFloat 6s ease-in-out infinite;
-}
-
-@keyframes heroFloat{
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-10px);
-    }
-}
-
-.hero h1{
-    font-size:
-        clamp(55px,11vw,118px);
-
-    line-height:.85;
-
-    letter-spacing:-7px;
-
-    font-weight:950;
-
-    text-shadow:
-        0 20px 60px rgba(0,0,0,.5);
-}
-
-.hero h1 span{
-    color:#ed0000;
-
-    text-shadow:
-        0 0 45px rgba(255,0,0,.22);
-}
-
-.hero-text{
-    max-width:700px;
-
-    margin:32px auto;
-
-    color:#777;
-
-    font-size:15px;
-
-    line-height:1.85;
-}
-
-.hero-buttons{
+    inset:30px;
+    border:1px solid rgba(255,0,0,.15);
+    border-radius:230px 230px 25px 25px;
     display:flex;
-
-    justify-content:center;
-
-    gap:12px;
-
-    flex-wrap:wrap;
-}
-
-/* =========================================
-   SERVICES
-========================================= */
-
-.services-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:15px;
-}
-
-.service-card{
-    position:relative;
-
-    min-height:280px;
-
-    padding:27px;
-
-    display:flex;
-
     flex-direction:column;
-
-    justify-content:space-between;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(20,20,20,.9),
-            rgba(7,7,7,.95)
-        );
-
-    border:
-        1px solid rgba(255,255,255,.075);
-
-    border-radius:22px;
-
-    overflow:hidden;
-
-    transition:.35s;
-
-    box-shadow:
-        inset 0 0 40px rgba(255,255,255,.01);
-}
-
-.service-card::before{
-    content:"";
-
-    position:absolute;
-
-    width:160px;
-    height:160px;
-
-    top:-80px;
-    right:-80px;
-
-    background:#ff0000;
-
-    opacity:.05;
-
-    filter:blur(50px);
-
-    transition:.35s;
-}
-
-.service-card:hover{
-    transform:
-        translateY(-8px);
-
-    border-color:
-        rgba(255,0,0,.38);
-
-    box-shadow:
-        0 25px 65px rgba(0,0,0,.45),
-        0 0 35px rgba(255,0,0,.05);
-}
-
-.service-card:hover::before{
-    opacity:.16;
-}
-
-.service-icon{
-    font-size:27px;
-
-    width:54px;
-    height:54px;
-
-    display:flex;
-
     align-items:center;
     justify-content:center;
-
-    border-radius:15px;
-
-    background:
-        rgba(255,0,0,.07);
-
-    border:
-        1px solid rgba(255,0,0,.13);
-
-    margin-bottom:25px;
-
-    transition:.3s;
+    text-align:center;
 }
 
-.service-card:hover .service-icon{
-    transform:
-        rotate(-5deg)
-        scale(1.08);
-
-    box-shadow:
-        0 0 30px rgba(255,0,0,.12);
+.mirror-symbol{
+    font-size:100px;
+    color:#e00000;
+    filter:drop-shadow(0 0 30px red);
+    transition:.7s;
 }
 
-.service-card h3{
-    font-size:20px;
-
-    margin-bottom:10px;
-}
-
-.service-card p{
-    color:#777;
-
-    font-size:12px;
-
-    line-height:1.7;
-}
-
-.service-link{
-    color:#ff3333;
-
-    font-size:10px;
-
-    font-weight:950;
-
-    letter-spacing:1px;
-
+.mirror h3{
+    font-size:25px;
     margin-top:25px;
 }
 
-/* =========================================
-   ZENBOT
-========================================= */
+.mirror p{
+    color:#666;
+    font-size:11px;
+    margin-top:10px;
+    letter-spacing:2px;
+}
 
-.bot-layout{
+.mirror.open{
+    transform:perspective(800px) rotateY(12deg) scale(.96);
+    filter:saturate(1.6);
+}
+
+.mirror.open .mirror-symbol{
+    transform:scale(1.35) rotate(180deg);
+    text-shadow:0 0 40px red;
+}
+
+/* =========================
+   BOT
+========================= */
+
+.bot-grid{
     display:grid;
-
-    grid-template-columns:
-        1.05fr .95fr;
-
-    gap:60px;
-
+    grid-template-columns:1.05fr .95fr;
+    gap:45px;
     align-items:center;
 }
 
-.visual{
-    position:relative;
-
-    background:#080808;
-
-    border:
-        1px solid rgba(255,255,255,.08);
-
-    border-radius:28px;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 35px 100px rgba(0,0,0,.6);
-}
-
-.visual::after{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    pointer-events:none;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent,
-            rgba(255,0,0,.08),
-            transparent
-        );
-
-    transform:
-        translateX(-100%);
-
-    animation:
-        visualScan 6s infinite;
-}
-
-@keyframes visualScan{
-    0%,65%{
-        transform:translateX(-100%);
-    }
-
-    85%,100%{
-        transform:translateX(100%);
-    }
-}
-
-.visual img{
-    display:block;
-
+.bot-image{
     width:100%;
-    height:auto;
+    display:block;
+    border-radius:28px;
+    border:1px solid rgba(255,0,0,.18);
+    box-shadow:0 30px 80px rgba(0,0,0,.6);
+    transition:.5s;
+}
 
-    object-fit:cover;
+.bot-image:hover{
+    transform:scale(1.02) rotate(-.5deg);
 }
 
 .bot-info small{
-    color:#ff4444;
-
-    font-weight:950;
-
+    color:#ff3333;
+    font-size:9px;
     letter-spacing:4px;
-
-    font-size:10px;
+    font-weight:1000;
 }
 
 .bot-info h2{
-    font-size:
-        clamp(40px,6vw,70px);
-
-    line-height:.95;
-
+    margin:15px 0;
+    font-size:clamp(45px,6vw,75px);
+    line-height:.9;
     letter-spacing:-4px;
-
-    margin:15px 0 22px;
 }
 
 .bot-info h2 span{
-    color:#ed0000;
-
-    text-shadow:
-        0 0 30px rgba(255,0,0,.18);
+    color:red;
 }
 
 .bot-info p{
     color:#777;
-
-    line-height:1.85;
-
-    font-size:14px;
-
-    margin-bottom:27px;
+    line-height:1.8;
+    margin-bottom:25px;
 }
 
-.bot-buttons{
+.bot-actions{
     display:flex;
-
     flex-wrap:wrap;
-
     gap:10px;
 }
 
-/* =========================================
-   REVIEWS
-========================================= */
-
-.reviews{
-    margin-top:100px;
+@media(max-width:800px){
+    .bot-grid{
+        grid-template-columns:1fr;
+    }
 }
 
-.reviews-grid{
+/* =========================
+   REVIEWS
+========================= */
+
+.review-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
 }
 
 .review{
-    position:relative;
-
-    padding:27px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #101010,
-            #070707
-        );
-
-    border:
-        1px solid rgba(255,255,255,.07);
-
-    border-radius:20px;
-
+    padding:28px;
+    border-radius:22px;
     transition:.3s;
 }
 
 .review:hover{
-    transform:translateY(-6px);
-
-    border-color:
-        rgba(255,0,0,.25);
+    transform:translateY(-7px);
+    border-color:rgba(255,0,0,.3);
 }
 
 .stars{
     color:#ff2020;
-
-    letter-spacing:3px;
-
-    margin-bottom:17px;
-
-    text-shadow:
-        0 0 15px rgba(255,0,0,.35);
+    letter-spacing:4px;
 }
 
 .review p{
-    color:#aaa;
-
-    line-height:1.75;
-
+    color:#888;
+    line-height:1.7;
+    margin-top:18px;
     font-size:13px;
 }
 
 .review-name{
     margin-top:20px;
-
-    font-weight:900;
-
-    font-size:12px;
-
-    color:#ddd;
+    font-weight:1000;
+    font-size:11px;
 }
 
-/* =========================================
+@media(max-width:800px){
+    .review-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
    STAFF
-========================================= */
+========================= */
 
 .staff-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:18px;
-
-    max-width:900px;
-
-    margin:auto;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
 }
 
-.staff-card{
-    position:relative;
-
+.staff{
+    padding:20px;
+    border-radius:25px;
     display:flex;
-
+    gap:20px;
     align-items:center;
-
-    gap:20px;
-
-    padding:21px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #111,
-            #080808
-        );
-
-    border:
-        1px solid rgba(255,255,255,.075);
-
-    border-radius:22px;
-
-    overflow:hidden;
-
-    transition:.35s;
+    transition:.4s;
 }
 
-.staff-card::before{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        linear-gradient(
-            110deg,
-            transparent,
-            rgba(255,0,0,.05),
-            transparent
-        );
-
-    transform:translateX(-100%);
-
-    transition:.5s;
+.staff:hover{
+    transform:translateY(-8px);
+    border-color:rgba(255,0,0,.35);
 }
 
-.staff-card:hover{
-    border-color:
-        rgba(255,0,0,.4);
-
-    transform:
-        translateY(-5px);
-
-    box-shadow:
-        0 25px 60px rgba(0,0,0,.45);
-}
-
-.staff-card:hover::before{
-    transform:translateX(100%);
-}
-
-.staff-photo{
-    width:95px;
-    height:95px;
-
-    flex-shrink:0;
-
-    border-radius:19px;
-
+.staff img{
+    width:105px;
+    height:105px;
     object-fit:cover;
-
-    border:
-        1px solid rgba(255,0,0,.2);
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.5);
+    border-radius:20px;
+    border:1px solid rgba(255,0,0,.25);
 }
 
-.staff-role{
+.role{
     color:#ff3333;
-
-    font-size:9px;
-
-    font-weight:950;
-
-    letter-spacing:2.5px;
-
-    margin-bottom:9px;
-}
-
-.staff-name{
-    font-size:17px;
-
-    font-weight:950;
-}
-
-.staff-desc{
-    margin-top:8px;
-
-    color:#666;
-
-    font-size:11px;
-
-    line-height:1.5;
-}
-
-/* =========================================
-   REQUEST CARDS
-========================================= */
-
-.request-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:20px;
-}
-
-.request-card{
-    min-height:390px;
-
-    padding:35px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:flex-end;
-
-    background:#0c0c0c;
-
-    border:
-        1px solid rgba(255,255,255,.08);
-
-    border-radius:27px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    transition:.35s;
-}
-
-.request-card:hover{
-    transform:translateY(-6px);
-
-    border-color:
-        rgba(255,0,0,.35);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.55);
-}
-
-.request-card::after{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        linear-gradient(
-            180deg,
-            transparent 15%,
-            rgba(0,0,0,.94) 100%
-        );
-
-    z-index:1;
-}
-
-.request-card img{
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    opacity:.58;
-
-    transition:.5s;
-}
-
-.request-card:hover img{
-    transform:scale(1.06);
-
-    opacity:.67;
-}
-
-.request-content{
-    position:relative;
-
-    z-index:2;
-}
-
-.request-content small{
-    color:#ff4444;
-
-    font-size:9px;
-
-    font-weight:950;
-
+    font-size:8px;
+    font-weight:1000;
     letter-spacing:3px;
 }
 
-.request-content h3{
-    font-size:
-        clamp(30px,4vw,44px);
-
-    line-height:.95;
-
-    letter-spacing:-2px;
-
-    margin:11px 0;
+.staff h3{
+    margin-top:7px;
+    font-size:18px;
 }
 
-.request-content p{
-    color:#bbb;
-
-    line-height:1.7;
-
-    font-size:13px;
+.staff p{
+    color:#666;
+    font-size:11px;
+    margin-top:8px;
+    line-height:1.5;
 }
 
-/* =========================================
+@media(max-width:700px){
+    .staff-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
    SHOP
-========================================= */
+========================= */
 
-.shop-notice{
-    max-width:850px;
-
-    margin:
-        -25px auto 45px;
-
-    padding:18px 20px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    border:
-        1px solid rgba(255,0,0,.18);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,0,0,.06),
-            rgba(255,255,255,.025)
-        );
-
-    border-radius:16px;
-
-    color:#999;
-
+.shop-note{
+    margin-bottom:30px;
+    padding:18px 22px;
+    border-radius:17px;
+    color:#888;
     font-size:12px;
-
-    line-height:1.6;
-
-    text-align:left;
+    text-align:center;
 }
 
-.shop-notice strong{
-    color:#fff;
-}
-
-.shop-notice-icon{
-    width:40px;
-    height:40px;
-
-    flex-shrink:0;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:12px;
-
-    background:
-        rgba(255,0,0,.09);
-
-    border:
-        1px solid rgba(255,0,0,.2);
+.shop-note strong{
+    color:#ff3333;
 }
 
 .shop-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:18px;
 }
 
 .product{
-    position:relative;
-
-    background:
-        linear-gradient(
-            145deg,
-            #0e0e0e,
-            #070707
-        );
-
-    border:
-        1px solid rgba(255,255,255,.075);
-
-    border-radius:23px;
-
     overflow:hidden;
-
-    transition:.35s;
+    border-radius:23px;
+    transition:.4s;
 }
 
 .product:hover{
-    transform:translateY(-8px);
-
-    border-color:
-        rgba(255,0,0,.35);
-
-    box-shadow:
-        0 25px 70px rgba(0,0,0,.55);
+    transform:translateY(-9px);
+    border-color:rgba(255,0,0,.4);
+    box-shadow:0 25px 70px rgba(0,0,0,.45);
 }
 
 .product-image{
     position:relative;
-
+    height:240px;
     overflow:hidden;
 }
 
-.product img{
-    display:block;
-
+.product-image img{
     width:100%;
-
-    height:235px;
-
+    height:100%;
+    display:block;
     object-fit:cover;
-
     transition:.5s;
 }
 
 .product:hover img{
-    transform:scale(1.055);
+    transform:scale(1.08);
 }
 
 .product-image::after{
-    content:"VISITA SHOP →";
-
+    content:"APRI NELLO SHOP ↗";
     position:absolute;
-
-    inset:auto 14px 14px auto;
-
-    padding:8px 10px;
-
-    background:
-        rgba(0,0,0,.75);
-
-    border:
-        1px solid rgba(255,0,0,.3);
-
-    backdrop-filter:blur(10px);
-
-    border-radius:8px;
-
-    color:#fff;
-
+    inset:auto 15px 15px 15px;
+    padding:10px;
+    text-align:center;
+    background:rgba(0,0,0,.7);
+    border:1px solid rgba(255,0,0,.3);
+    border-radius:10px;
     font-size:8px;
-
-    font-weight:950;
-
-    letter-spacing:1px;
-
+    font-weight:1000;
+    letter-spacing:2px;
     opacity:0;
-
-    transform:translateY(5px);
-
+    transform:translateY(10px);
     transition:.3s;
 }
 
 .product:hover .product-image::after{
     opacity:1;
-
     transform:translateY(0);
 }
 
@@ -1513,793 +1041,536 @@ section{
 }
 
 .product-content h3{
-    margin-bottom:8px;
-
     font-size:17px;
 }
 
 .product-content p{
-    color:#777;
-
-    font-size:12px;
-
-    line-height:1.65;
-
-    min-height:42px;
-}
-
-.product-content .btn{
-    width:100%;
-
-    margin-top:17px;
-}
-
-/* =========================================
-   MODALS / DEDICATED SHEETS
-========================================= */
-
-.modal{
-    position:fixed;
-
-    inset:0;
-
-    z-index:9000;
-
-    display:none;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:18px;
-
-    background:
-        rgba(0,0,0,.84);
-
-    backdrop-filter:
-        blur(18px);
-}
-
-.modal.active{
-    display:flex;
-
-    animation:
-        modalFade .25s ease;
-}
-
-@keyframes modalFade{
-    from{
-        opacity:0;
-    }
-
-    to{
-        opacity:1;
-    }
-}
-
-.modal-box{
-    position:relative;
-
-    width:min(680px,100%);
-
-    max-height:91vh;
-
-    overflow:auto;
-
-    background:
-        linear-gradient(
-            145deg,
-            #101010,
-            #070707
-        );
-
-    border:
-        1px solid rgba(255,0,0,.25);
-
-    border-radius:27px;
-
-    padding:30px;
-
-    box-shadow:
-        0 35px 120px rgba(0,0,0,.9),
-        0 0 70px rgba(255,0,0,.07);
-
-    animation:
-        modalUp .3s ease;
-}
-
-@keyframes modalUp{
-    from{
-        transform:translateY(20px) scale(.98);
-        opacity:0;
-    }
-
-    to{
-        transform:translateY(0) scale(1);
-        opacity:1;
-    }
-}
-
-.modal-box::-webkit-scrollbar{
-    width:5px;
-}
-
-.modal-box::-webkit-scrollbar-thumb{
-    background:#333;
-
-    border-radius:10px;
-}
-
-.modal-header{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:flex-start;
-
-    gap:20px;
-
-    margin-bottom:25px;
-}
-
-.modal-header h2{
-    font-size:32px;
-
-    letter-spacing:-1px;
-}
-
-.modal-header p{
     color:#666;
+    font-size:11px;
+    line-height:1.6;
+    margin:8px 0 17px;
+}
 
-    margin-top:7px;
+@media(max-width:850px){
+    .shop-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
 
+@media(max-width:550px){
+    .shop-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   REQUEST CARDS
+========================= */
+
+.request-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.request-card{
+    position:relative;
+    min-height:420px;
+    overflow:hidden;
+    border-radius:28px;
+    display:flex;
+    align-items:flex-end;
+    padding:35px;
+    transition:.4s;
+}
+
+.request-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(255,0,0,.4);
+}
+
+.request-card img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:.55;
+    transition:.6s;
+}
+
+.request-card:hover img{
+    transform:scale(1.06);
+}
+
+.request-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to top,
+        #030303,
+        rgba(0,0,0,.35),
+        transparent
+    );
+}
+
+.request-content{
+    position:relative;
+    z-index:2;
+}
+
+.request-content small{
+    color:#ff3333;
+    font-size:8px;
+    letter-spacing:3px;
+    font-weight:1000;
+}
+
+.request-content h3{
+    margin:9px 0;
+    font-size:40px;
+}
+
+.request-content p{
+    color:#bbb;
     font-size:12px;
+    line-height:1.7;
+    max-width:500px;
 }
 
-.close{
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-
-    border:1px solid #292929;
-
-    background:#151515;
-
-    color:white;
-
-    cursor:pointer;
-
-    font-size:18px;
-
-    transition:.25s;
+@media(max-width:700px){
+    .request-grid{
+        grid-template-columns:1fr;
+    }
 }
 
-.close:hover{
-    background:#3d0000;
+/* =========================
+   FULLSCREEN VIEWS
+========================= */
 
-    border-color:#a00000;
+.page-view{
+    position:fixed;
+    inset:0;
+    z-index:7000;
+    background:
+        radial-gradient(
+            circle at 50% 0,
+            rgba(255,0,0,.16),
+            transparent 40%
+        ),
+        #030303;
+    overflow-y:auto;
+    display:none;
+    padding:110px 5% 130px;
+}
 
-    transform:rotate(90deg);
+.page-view.active{
+    display:block;
+    animation:viewIn .45s ease;
+}
+
+@keyframes viewIn{
+    from{
+        opacity:0;
+        transform:scale(1.03);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 }
 
 .back-button{
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    margin-bottom:22px;
-
-    padding:9px 12px;
-
-    border-radius:10px;
-
-    background:#0a0a0a;
-
-    border:1px solid #252525;
-
-    color:#777;
-
-    cursor:pointer;
-
-    font-size:10px;
-
-    font-weight:900;
-
-    transition:.2s;
+    position:fixed;
+    top:88px;
+    left:30px;
+    z-index:7100;
 }
 
-.back-button:hover{
-    color:#fff;
-
-    border-color:
-        rgba(255,0,0,.3);
+.view-inner{
+    width:min(850px,100%);
+    margin:auto;
 }
 
-/* =========================================
-   FORMS
-========================================= */
+.form-card{
+    padding:35px;
+    border-radius:28px;
+}
 
 .form-group{
-    margin-bottom:17px;
+    margin-bottom:18px;
 }
 
 .form-group label{
     display:block;
-
-    margin-bottom:7px;
-
-    font-size:10px;
-
-    font-weight:900;
-
     color:#aaa;
-
-    letter-spacing:.5px;
+    font-size:9px;
+    font-weight:1000;
+    letter-spacing:2px;
+    margin-bottom:8px;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select{
     width:100%;
-
-    padding:14px;
-
-    border-radius:12px;
-
-    border:1px solid #252525;
-
-    background:#060606;
-
+    background:#070707;
     color:white;
-
+    border:1px solid #252525;
     outline:none;
-
-    transition:.2s;
+    border-radius:12px;
+    padding:14px;
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus{
     border-color:#d00000;
-
-    box-shadow:
-        0 0 0 3px rgba(255,0,0,.05);
+    box-shadow:0 0 20px rgba(255,0,0,.08);
 }
 
 .form-group textarea{
-    min-height:125px;
-
+    min-height:140px;
     resize:vertical;
 }
 
-.platform-buttons{
+.platforms{
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:8px;
 }
 
-.platform-button{
-    padding:12px 5px;
-
-    background:#0d0d0d;
-
-    border:1px solid #252525;
-
-    border-radius:10px;
-
-    color:#888;
-
+.platform{
+    padding:14px 5px;
+    border:1px solid #242424;
+    border-radius:12px;
+    background:#0a0a0a;
+    color:#777;
     cursor:pointer;
-
-    font-size:11px;
-
-    font-weight:900;
-
-    transition:.2s;
 }
 
-.platform-button:hover{
-    border-color:#555;
-
+.platform.active{
     color:white;
-}
-
-.platform-button.active{
-    background:
-        linear-gradient(
-            135deg,
-            #520000,
-            #230000
-        );
-
+    background:#400000;
     border-color:#e00000;
-
-    color:white;
-
-    box-shadow:
-        0 0 20px rgba(255,0,0,.08);
 }
 
-.optional{
-    color:#555;
+@media(max-width:600px){
+    .page-view{
+        padding:120px 5% 130px;
+    }
 
-    font-size:9px;
+    .back-button{
+        left:18px;
+    }
 
-    margin-top:5px;
+    .form-card{
+        padding:22px;
+    }
+
+    .platforms{
+        grid-template-columns:1fr;
+    }
 }
 
-.checkbox{
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    color:#888;
-
-    font-size:11px;
-
-    margin:15px 0;
-}
-
-.checkbox input{
-    width:auto;
-}
-
-/* =========================================
+/* =========================
    MUSIC PLAYER
-========================================= */
+========================= */
 
 .music-player{
     position:fixed;
-
+    bottom:16px;
     left:50%;
-    bottom:15px;
-
     transform:translateX(-50%);
-
-    z-index:8000;
-
     width:min(900px,calc(100% - 24px));
-
-    padding:13px 16px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(17,17,17,.97),
-            rgba(5,5,5,.98)
-        );
-
-    border:
-        1px solid rgba(255,0,0,.28);
-
-    border-radius:21px;
-
-    box-shadow:
-        0 20px 80px rgba(0,0,0,.85),
-        0 0 45px rgba(255,0,0,.08);
-
+    z-index:6000;
+    padding:13px;
+    border-radius:20px;
+    background:rgba(8,8,8,.92);
+    border:1px solid rgba(255,0,0,.3);
     backdrop-filter:blur(25px);
-}
-
-.music-player::before{
-    content:"";
-
-    position:absolute;
-
-    inset:-1px;
-
-    border-radius:inherit;
-
-    pointer-events:none;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,0,0,.25),
-            transparent
-        );
-
-    opacity:.25;
-
-    animation:
-        playerGlow 4s linear infinite;
-}
-
-@keyframes playerGlow{
-    from{
-        transform:translateX(-100%);
-    }
-
-    to{
-        transform:translateX(100%);
-    }
+    box-shadow:0 20px 70px rgba(0,0,0,.8);
 }
 
 .player-top{
-    position:relative;
-
-    z-index:2;
-
     display:flex;
-
     align-items:center;
-
-    gap:13px;
+    gap:12px;
 }
 
 .player-cover{
-    width:55px;
-    height:55px;
-
-    flex-shrink:0;
-
-    border-radius:14px;
-
+    width:52px;
+    height:52px;
+    border-radius:13px;
     object-fit:cover;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.55);
 }
 
 .player-info{
     flex:1;
-
     min-width:0;
 }
 
 .song{
-    font-size:13px;
-
-    font-weight:950;
-
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
+    font-size:12px;
+    font-weight:1000;
 }
 
 .artist{
     color:#666;
-
     font-size:10px;
-
     margin-top:4px;
 }
 
 .play{
-    width:46px;
-    height:46px;
-
-    flex-shrink:0;
-
+    width:44px;
+    height:44px;
     border:none;
-
     border-radius:50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f00000,
-            #a90000
-        );
-
+    background:#e00000;
     color:white;
-
     cursor:pointer;
-
-    font-size:15px;
-
-    box-shadow:
-        0 8px 25px rgba(255,0,0,.18);
-
-    transition:.25s;
-}
-
-.play:hover{
-    transform:scale(1.07);
-
-    box-shadow:
-        0 10px 35px rgba(255,0,0,.3);
 }
 
 .player-row{
-    position:relative;
-
-    z-index:2;
-
     display:flex;
-
     align-items:center;
-
     gap:9px;
-
-    margin-top:10px;
+    margin-top:9px;
 }
 
 .time{
+    width:34px;
     color:#666;
-
     font-size:9px;
-
-    width:36px;
 }
 
 .range{
     flex:1;
-
-    height:4px;
-
     appearance:none;
-
-    border-radius:10px;
-
-    background:#252525;
-
-    cursor:pointer;
+    height:4px;
+    border-radius:20px;
+    background:#292929;
 }
 
 .range::-webkit-slider-thumb{
     appearance:none;
-
-    width:12px;
-    height:12px;
-
+    width:11px;
+    height:11px;
     border-radius:50%;
-
     background:#f00000;
-
-    box-shadow:
-        0 0 10px rgba(255,0,0,.5);
 }
 
-/* =========================================
+/* =========================
+   GLITCH
+========================= */
+
+.glitch-overlay{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:#050000;
+    overflow:hidden;
+}
+
+.glitch-overlay.active{
+    display:flex;
+    animation:glitchBg .15s infinite;
+}
+
+.glitch-content{
+    text-align:center;
+    position:relative;
+    z-index:3;
+}
+
+.glitch-logo{
+    font-size:clamp(55px,12vw,130px);
+    font-weight:1000;
+    letter-spacing:-7px;
+    color:#fff;
+    text-shadow:
+        5px 0 red,
+        -5px 0 cyan;
+    animation:glitchText .12s infinite;
+}
+
+.glitch-warning{
+    margin-top:25px;
+    color:red;
+    font-size:13px;
+    font-weight:1000;
+    letter-spacing:5px;
+    animation:blink .3s infinite;
+}
+
+.glitch-message{
+    margin-top:35px;
+    max-width:700px;
+    padding:0 20px;
+    color:white;
+    font-size:clamp(14px,2vw,21px);
+    line-height:1.5;
+}
+
+.glitch-lines{
+    position:absolute;
+    inset:0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 5px,
+            rgba(255,0,0,.08) 6px
+        );
+    mix-blend-mode:screen;
+    animation:scan .15s infinite;
+}
+
+@keyframes glitchBg{
+    0%{filter:none}
+    25%{filter:invert(.8)}
+    50%{filter:hue-rotate(90deg)}
+    75%{filter:contrast(2)}
+    100%{filter:none}
+}
+
+@keyframes glitchText{
+    0%{transform:translate(0)}
+    25%{transform:translate(8px,-3px) skewX(8deg)}
+    50%{transform:translate(-7px,4px)}
+    75%{transform:translate(4px,1px) skewX(-5deg)}
+    100%{transform:translate(0)}
+}
+
+@keyframes scan{
+    from{transform:translateY(-10px)}
+    to{transform:translateY(10px)}
+}
+
+/* =========================
    FOOTER
-========================================= */
+========================= */
 
 footer{
-    padding:
-        80px 20px 160px;
-
     text-align:center;
-
-    border-top:
-        1px solid rgba(255,255,255,.06);
-
+    padding:100px 20px 170px;
+    border-top:1px solid var(--line);
     color:#444;
-
-    font-size:11px;
+    font-size:10px;
+    letter-spacing:1px;
 }
 
 footer strong{
     color:#aaa;
-}
-
-/* =========================================
-   REVEAL ANIMATIONS
-========================================= */
-
-.reveal{
-    opacity:0;
-
-    transform:
-        translateY(30px);
-
-    transition:
-        opacity .8s ease,
-        transform .8s ease;
-}
-
-.reveal.show{
-    opacity:1;
-
-    transform:
-        translateY(0);
-}
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media(max-width:900px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .services-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .bot-layout{
-        grid-template-columns:1fr;
-    }
-
-    .shop-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .reviews-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-@media(max-width:600px){
-
-    section{
-        padding:80px 0;
-    }
-
-    .services-grid,
-    .shop-grid,
-    .request-grid,
-    .staff-grid{
-        grid-template-columns:1fr;
-    }
-
-    .hero{
-        min-height:auto;
-
-        padding:
-            75px 0 90px;
-    }
-
-    .hero h1{
-        letter-spacing:-4px;
-    }
-
-    .hero-image{
-        max-height:300px;
-    }
-
-    .hero-text{
-        font-size:13px;
-    }
-
-    .staff-card{
-        padding:15px;
-    }
-
-    .staff-photo{
-        width:75px;
-        height:75px;
-    }
-
-    .request-card{
-        min-height:350px;
-
-        padding:25px;
-    }
-
-    .modal{
-        padding:10px;
-    }
-
-    .modal-box{
-        padding:22px;
-
-        border-radius:22px;
-    }
-
-    .platform-buttons{
-        grid-template-columns:1fr;
-    }
-
-    .shop-notice{
-        align-items:flex-start;
-    }
-
-    .music-player{
-        bottom:10px;
-    }
-
 }
 </style>
 </head>
 
 <body>
 
-<!-- PARTICLES -->
+<div class="cursor-glow" id="cursorGlow"></div>
 
-<div class="particles">
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-</div>
-
-
-<!-- NAVBAR -->
+<!-- =========================
+     NAV
+========================= -->
 
 <header>
-
 <div class="nav">
 
 <a href="#home" class="logo">
-    𝐙𝐄𝐍𝟕𝟕𝟕<span>//輝く時</span>
+    𝐙𝐄𝐍<span>𝟕𝟕𝟕</span> // 輝く時
 </a>
 
 <nav class="nav-links">
-
-    <a href="#zenbot">ZenBot</a>
-    <a href="#staff">Staff</a>
-    <a href="#report">Report</a>
-    <a href="#sponsor">Sponsor</a>
-    <a href="#shop">Shop</a>
-
+    <a href="#zenbot">ZENBOT</a>
+    <a href="#staff">STAFF</a>
+    <a href="#shop">SHOP</a>
+    <a href="#report">REPORT</a>
+    <a href="#sponsor">SPONSOR</a>
 </nav>
 
 <a
-    class="nav-wa"
+    class="nav-contact"
     href="https://wa.me/905331324935"
     target="_blank"
 >
-    WHATSAPP
+    CONTACT
 </a>
 
 </div>
-
 </header>
 
 
-<!-- HOME -->
+<!-- =========================
+     HERO
+========================= -->
 
-<main id="home">
+<section class="hero" id="home">
 
-<section class="hero">
+<div class="stars" id="stars"></div>
 
-<div class="hero-inner">
+<div class="universe">
 
-<div class="hero-badge">
-    𝐙𝐄𝐍𝟕𝟕𝟕 COMMUNITY
+<div class="orbit one"></div>
+<div class="orbit two"></div>
+<div class="orbit three"></div>
+
+
+<div class="planet p-bot" onclick="goTo('zenbot')">
+    <div class="planet-icon">🤖</div>
+    <div class="planet-title">ZENBOT</div>
+    <div class="planet-small">SYSTEM</div>
 </div>
 
+<div class="planet p-staff" onclick="goTo('staff')">
+    <div class="planet-icon">♟</div>
+    <div class="planet-title">STAFF</div>
+    <div class="planet-small">TEAM</div>
+</div>
+
+<div class="planet p-shop" onclick="goTo('shop')">
+    <div class="planet-icon">◈</div>
+    <div class="planet-title">SHOP</div>
+    <div class="planet-small">MARKET</div>
+</div>
+
+<div class="planet p-report" onclick="openView('reportView')">
+    <div class="planet-icon">⚠</div>
+    <div class="planet-title">REPORT</div>
+    <div class="planet-small">SIGNAL</div>
+</div>
+
+<div class="planet p-sponsor" onclick="openView('sponsorView')">
+    <div class="planet-icon">✦</div>
+    <div class="planet-title">SPONSOR</div>
+    <div class="planet-small">COLLAB</div>
+</div>
+
+
+<div class="zen-core">
+
+<div class="core-ring"></div>
+
+<div class="core-logo">
+
 <img
-    class="hero-image"
     src="https://i.imghippo.com/files/lQa7753ct.png"
     alt="ZEN777"
 >
 
-<h1>
+<div class="core-title">
     ZEN<span>777</span>
-</h1>
+</div>
 
-<p class="hero-text">
-    Un ecosistema costruito per distinguersi.
-    Community, ZenBot, Shop, Report, Sponsor
-    e molto altro in un'unica esperienza.
-</p>
+<div class="core-sub">
+    ENTER THE UNIVERSE
+</div>
 
-<div class="hero-buttons">
-
-<a
-    href="#zenbot"
-    class="btn btn-red"
->
-    SCOPRI ZENBOT
-</a>
-
-<a
-    href="#services"
-    class="btn btn-dark"
->
-    ESPLORA ZEN
-</a>
+</div>
 
 </div>
 
@@ -2308,120 +1579,90 @@ footer strong{
 </section>
 
 
-<!-- SERVICES -->
+<!-- =========================
+     EYE
+========================= -->
 
-<section id="services">
+<section class="section">
 
-<div class="container">
+<div class="section-head">
 
-<div class="section-head reveal">
+<small>ZEN SYSTEM // 001</small>
 
-<small>ZEN777 ECOSYSTEM</small>
-
-<h2>
-    Tutto.<br>
-    In un unico posto.
-</h2>
+<h2>THE EYE</h2>
 
 <p>
-    Tutto ciò che riguarda l'ecosistema ZEN777
-    riunito in una piattaforma progettata per essere
-    veloce, elegante e diversa dal solito.
+Non è semplicemente un'immagine.
+È l'occhio del sistema ZEN777.
+Muovi il cursore e guarda cosa succede.
 </p>
 
 </div>
 
+<div class="eye-stage glass">
 
-<div class="services-grid">
+<div class="eye-live">
+    <span class="live-dot"></span>
+    ZEN SYSTEM ONLINE
+</div>
+
+<div class="eye" id="zenEye">
+
+<div class="iris" id="iris">
+    <div class="pupil"></div>
+</div>
+
+</div>
+
+<div class="eye-label">
+    THE EYE IS WATCHING
+</div>
+
+</div>
+
+</section>
 
 
-<a href="#zenbot" class="service-card reveal">
+<!-- =========================
+     MIRROR
+========================= -->
 
-<div>
+<section class="section">
 
-<div class="service-icon">🤖</div>
+<div class="section-head">
 
-<h3>ZenBot</h3>
+<small>ZEN SYSTEM // 002</small>
+
+<h2>ZEN MIRROR</h2>
 
 <p>
-Il bot ufficiale dell'ecosistema ZEN777,
-disponibile anche completamente personalizzato.
+Uno specchio non mostra semplicemente ciò che sei.
+Mostra ciò che potresti diventare.
 </p>
 
 </div>
 
-<div class="service-link">
-    SCOPRI ZENBOT →
+<div class="mirror-wrap">
+
+<div
+    class="mirror"
+    id="mirror"
+    onclick="activateMirror()"
+>
+
+<div class="mirror-inner">
+
+<div class="mirror-symbol">
+    𓂀
 </div>
 
-</a>
-
-
-<a href="#report" class="service-card reveal">
-
-<div>
-
-<div class="service-icon">🚨</div>
-
-<h3>Zen Report</h3>
+<h3>YOU HAVE ENTERED<br>THE MIRROR.</h3>
 
 <p>
-Invia una segnalazione allo staff
-selezionando WhatsApp, Telegram o Discord.
+TOUCH THE UNKNOWN
 </p>
 
 </div>
-
-<div class="service-link">
-    FAI UN REPORT →
-</div>
-
-</a>
-
-
-<a href="#sponsor" class="service-card reveal">
-
-<div>
-
-<div class="service-icon">🤝</div>
-
-<h3>Collab / Sponsor</h3>
-
-<p>
-Proponi una collaborazione,
-sponsorizzazione o partnership a ZEN777.
-</p>
-
-</div>
-
-<div class="service-link">
-    INVIA RICHIESTA →
-</div>
-
-</a>
-
-
-<a href="#shop" class="service-card reveal">
-
-<div>
-
-<div class="service-icon">🛍️</div>
-
-<h3>Zen Shop</h3>
-
-<p>
-Scopri tutti i prodotti e servizi disponibili
-nello shop ufficiale ZEN777.
-</p>
-
-</div>
-
-<div class="service-link">
-    VISITA SHOP →
-</div>
-
-</a>
-
 
 </div>
 
@@ -2430,54 +1671,54 @@ nello shop ufficiale ZEN777.
 </section>
 
 
-<!-- ZENBOT -->
+<!-- =========================
+     ZENBOT
+========================= -->
 
-<section id="zenbot">
+<section class="section" id="zenbot">
 
-<div class="container">
+<div class="bot-grid">
 
-<div class="bot-layout">
-
-<div class="visual reveal">
+<div>
 
 <img
+    class="bot-image"
     src="https://i.imghippo.com/files/UhsI1626yMw.png"
-    alt="ZENBOT 777"
+    alt="ZenBot"
 >
 
 </div>
 
+<div class="bot-info">
 
-<div class="bot-info reveal">
-
-<small>ZENBOT 777</small>
+<small>ZENBOT 777 // SYSTEM</small>
 
 <h2>
-    Il tuo bot.<br>
-    <span>Il tuo ZEN.</span>
+YOUR BOT.<br>
+<span>YOUR ZEN.</span>
 </h2>
 
 <p>
-ZenBot è il bot dell'ecosistema ZEN777.
-Porta automazioni, funzioni e gestione
-direttamente nella tua community oppure
-richiedi un bot completamente personalizzato.
+ZenBot è il cuore operativo dell'ecosistema.
+Un sistema progettato per community WhatsApp,
+con strumenti, automazioni e possibilità di
+personalizzazione completa.
 </p>
 
-<div class="bot-buttons">
+<div class="bot-actions">
 
 <a
+    class="btn btn-red"
     href="https://zen777.mysellauth.com"
     target="_blank"
-    class="btn btn-red"
 >
     COMPRA ORA IL TUO BOT
 </a>
 
 <a
+    class="btn btn-dark"
     href="https://wa.me/905331324935?text=Ciao%20DryZen%2C%20vorrei%20richiedere%20l%27accesso%20a%20ZenBot."
     target="_blank"
-    class="btn btn-dark"
 >
     AGGIUNGI ZENBOT ORA
 </a>
@@ -2489,80 +1730,43 @@ richiedi un bot completamente personalizzato.
 </div>
 
 
-<!-- REVIEWS -->
+<div style="margin-top:110px">
 
-<div class="reviews">
-
-<div class="section-head reveal">
+<div class="section-head">
 
 <small>ZENBOT // FEEDBACK</small>
 
 <h2>Recensioni</h2>
 
-<p>
-    L'esperienza di chi ha già scelto ZENBot.
-</p>
-
 </div>
 
+<div class="review-grid">
 
-<div class="reviews-grid">
-
-
-<div class="review reveal">
-
-<div class="stars">
-★★★★★
+<div class="review glass">
+    <div class="stars">★★★★★</div>
+    <p>
+        Bot completo, veloce e con una gestione
+        molto più semplice della community.
+    </p>
+    <div class="review-name">ZEN777 MEMBER</div>
 </div>
 
-<p>
-ZenBot ha reso molto più semplice
-gestire la nostra community.
-</p>
-
-<div class="review-name">
-ZEN777 Member
+<div class="review glass">
+    <div class="stars">★★★★★</div>
+    <p>
+        La personalizzazione è stata esattamente
+        come la volevo. Molto pulito.
+    </p>
+    <div class="review-name">COMMUNITY OWNER</div>
 </div>
 
-</div>
-
-
-<div class="review reveal">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-Configurazione e personalizzazione
-esattamente come richiesto.
-</p>
-
-<div class="review-name">
-Community Member
-</div>
-
-</div>
-
-
-<div class="review reveal">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-Un bot completo con una grafica
-completamente personalizzabile.
-</p>
-
-<div class="review-name">
-ZEN777 User
-</div>
-
-</div>
-
-
+<div class="review glass">
+    <div class="stars">★★★★★</div>
+    <p>
+        Un sistema diverso dai soliti bot.
+        Grafica e funzioni sono fantastiche.
+    </p>
+    <div class="review-name">ZEN USER</div>
 </div>
 
 </div>
@@ -2572,181 +1776,77 @@ ZEN777 User
 </section>
 
 
-<!-- STAFF -->
+<!-- =========================
+     STAFF
+========================= -->
 
-<section id="staff">
+<section class="section" id="staff">
 
-<div class="container">
+<div class="section-head">
 
-<div class="section-head reveal">
+<small>ZEN777 // ARCHITECTS</small>
 
-<small>ZEN777 // TEAM</small>
-
-<h2>Founder & Staff</h2>
+<h2>THE FOUNDERS</h2>
 
 <p>
-    Le persone dietro lo sviluppo e la gestione
-    dell'ecosistema ZEN777.
+Due Founder. Due ruoli differenti.
+Un unico universo.
 </p>
 
 </div>
 
-
 <div class="staff-grid">
 
-
-<!-- DRYZEN -->
-
-<div class="staff-card reveal">
+<div class="staff glass">
 
 <img
-    class="staff-photo"
     src="https://i.imghippo.com/files/HEn6241qxU.jpeg"
     alt="DryZen"
 >
 
 <div>
 
-<div class="staff-role">
-    FOUNDER • DEVELOPER
+<div class="role">
+FOUNDER // DEVELOPER
 </div>
 
-<div class="staff-name">
-    禅 | 𓆩𝕯𝓻𝔂𝔃𝖊𝖓𓆪 ⁷⁷⁷
+<h3>
+禅 | 𓆩𝕯𝖗𝖞𝖟𝖊𝖓𓆪 ⁷⁷⁷
+</h3>
+
+<p>
+Founder di ZEN777.<br>
+Developer dei siti e dei bot.<br>
+Architetto tecnico dell'ecosistema.
+</p>
+
 </div>
 
-<div class="staff-desc">
-    Founder ZEN777 · Developer siti e bot
-</div>
-
-</div>
-
 </div>
 
 
-<!-- SKY -->
-
-<div class="staff-card reveal">
+<div class="staff glass">
 
 <img
-    class="staff-photo"
     src="https://i.imghippo.com/files/GsnF4435KAM.jpeg"
     alt="Sky"
 >
 
 <div>
 
-<div class="staff-role">
-    FOUNDER • MANAGER
+<div class="role">
+FOUNDER // MANAGER
 </div>
-
-<div class="staff-name">
-    禅 | 𓆩スカイ / 𝓢𝓴𝔂𓆪 ⁷⁷⁷
-</div>
-
-<div class="staff-desc">
-    Founder ZEN777 · Manager Sponsor & Gruppo
-</div>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- REPORT -->
-
-<section id="report">
-
-<div class="container">
-
-<div class="section-head reveal">
-
-<small>ZEN777 // REPORT</small>
-
-<h2>Segnala un problema.</h2>
-
-<p>
-    Una sezione dedicata alle segnalazioni.
-    Seleziona la piattaforma interessata e compila
-    la scheda per inviare il report.
-</p>
-
-</div>
-
-
-<div class="request-grid">
-
-<div class="request-card reveal">
-
-<img
-    src="https://i.imghippo.com/files/JNrf6087MGc.jpeg"
-    alt="ZEN Report"
->
-
-<div class="request-content">
-
-<small>ZEN REPORT</small>
 
 <h3>
-    Hai trovato un problema?
+禅 | 𓆩𝓢𝓴𝔂𓆪 ⁷⁷⁷
 </h3>
 
 <p>
-    WhatsApp, Telegram o Discord.
-    Apri la scheda report e invia la segnalazione.
+Founder di ZEN777.<br>
+Manager Sponsor & Community.<br>
+Gestione collaborazioni e network.
 </p>
-
-<br>
-
-<button
-    class="btn btn-red"
-    onclick="openModal('reportModal')"
->
-    APRI SCHEDA REPORT
-</button>
-
-</div>
-
-</div>
-
-
-<div class="request-card reveal">
-
-<img
-    src="https://i.imghippo.com/files/sJJX2991Vds.jpeg"
-    alt="ZEN Sponsor"
->
-
-<div class="request-content">
-
-<small>ZEN COLLAB / SPONSOR</small>
-
-<h3>
-    Vuoi collaborare?
-</h3>
-
-<p>
-    Proponi una collaborazione o una sponsorizzazione
-    direttamente a ZEN777.
-</p>
-
-<br>
-
-<a
-    href="#sponsor"
-    class="btn btn-red"
->
-    VAI A SPONSOR
-</a>
-
-</div>
 
 </div>
 
@@ -2757,495 +1857,238 @@ ZEN777 User
 </section>
 
 
-<!-- SPONSOR -->
+<!-- =========================
+     SHOP
+========================= -->
 
-<section id="sponsor">
+<section class="section" id="shop">
 
-<div class="container">
+<div class="section-head">
 
-<div class="section-head reveal">
+<small>ZEN777 // MARKET</small>
 
-<small>ZEN777 // COLLABORATIONS</small>
-
-<h2>
-    Costruiamo qualcosa.
-</h2>
+<h2>ZEN SHOP</h2>
 
 <p>
-    Community, progetto, pubblicità, partnership
-    o sponsorizzazione: invia la tua proposta
-    tramite la scheda dedicata.
+Prodotti e servizi dell'ecosistema ZEN777.
 </p>
 
 </div>
 
-
-<div class="request-grid">
-
-<div class="request-card reveal">
-
-<img
-    src="https://i.imghippo.com/files/sJJX2991Vds.jpeg"
-    alt="ZEN Sponsor"
->
-
-<div class="request-content">
-
-<small>ZEN SPONSOR</small>
-
-<h3>
-    Proponi una collaborazione.
-</h3>
-
-<p>
-    Compila la scheda con i dettagli
-    della tua proposta.
-</p>
-
-<br>
-
-<button
-    class="btn btn-red"
-    onclick="openModal('sponsorModal')"
->
-    INVIA RICHIESTA
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SHOP -->
-
-<section id="shop">
-
-<div class="container">
-
-<div class="section-head reveal">
-
-<small>ZEN777 // OFFICIAL SHOP</small>
-
-<h2>
-    ZEN Shop
-</h2>
-
-<p>
-    Prodotti e servizi dell'ecosistema ZEN777.
-</p>
-
-</div>
-
-
-<div class="shop-notice reveal">
-
-<div class="shop-notice-icon">
-    🛒
-</div>
-
-<div>
-<strong>Come funziona lo Shop?</strong><br>
-Cliccando su un prodotto verrai reindirizzato
-direttamente allo <strong>shop ufficiale ZEN777</strong>,
-dove potrai visualizzare il prodotto e procedere
-all'acquisto.
-</div>
-
+<div class="shop-note glass">
+    <strong>IMPORTANTE:</strong>
+    cliccando su un prodotto verrai reindirizzato
+    direttamente al sito dello Shop ZEN777 per
+    visualizzare il prodotto e completare l'acquisto.
 </div>
 
 
 <div class="shop-grid">
 
-
-<!-- BAN NUMBER -->
-
 <a
+    class="product glass"
     href="https://zen777.mysellauth.com"
     target="_blank"
-    class="product reveal"
 >
-
 <div class="product-image">
-
 <img
     src="https://i.imghippo.com/files/mr4005iI.jpeg"
     alt="Ban Number"
 >
-
 </div>
 
 <div class="product-content">
-
-<h3>
-    Ban Number
-</h3>
-
-<p>
-    Visualizza il prodotto e tutti i dettagli
-    nello shop ufficiale.
-</p>
-
-<div class="btn btn-red">
-    VAI ALLO SHOP →
+<h3>Ban Number</h3>
+<p>Metodo / servizio disponibile nello Shop ZEN777.</p>
+<span class="btn btn-red">APRI PRODOTTO ↗</span>
 </div>
-
-</div>
-
 </a>
 
 
-<!-- VPN -->
-
 <a
+    class="product glass"
     href="https://zen777.mysellauth.com"
     target="_blank"
-    class="product reveal"
 >
-
 <div class="product-image">
-
 <img
     src="https://i.imghippo.com/files/YvC8851lA.jpeg"
     alt="VPN"
 >
-
 </div>
 
 <div class="product-content">
-
-<h3>
-    VPN
-</h3>
-
-<p>
-    Scopri disponibilità e dettagli
-    direttamente nello shop.
-</p>
-
-<div class="btn btn-red">
-    VAI ALLO SHOP →
+<h3>VPN</h3>
+<p>Servizio disponibile nello Shop ZEN777.</p>
+<span class="btn btn-red">APRI PRODOTTO ↗</span>
 </div>
-
-</div>
-
 </a>
 
 
-<!-- WHATSAPP DUPLICATE -->
-
 <a
+    class="product glass"
     href="https://zen777.mysellauth.com"
     target="_blank"
-    class="product reveal"
 >
-
 <div class="product-image">
-
 <img
     src="https://i.imghippo.com/files/Ae7180Ldc.jpeg"
     alt="WhatsApp Duplicate Method"
 >
-
 </div>
 
 <div class="product-content">
-
-<h3>
-    WhatsApp Duplicate Method
-</h3>
-
-<p>
-    Visualizza il prodotto direttamente
-    nello shop ufficiale.
-</p>
-
-<div class="btn btn-red">
-    VAI ALLO SHOP →
+<h3>WhatsApp Duplicate Method</h3>
+<p>Prodotto disponibile nello Shop ZEN777.</p>
+<span class="btn btn-red">APRI PRODOTTO ↗</span>
 </div>
-
-</div>
-
 </a>
 
 
-<!-- VOIP -->
-
 <a
+    class="product glass"
     href="https://zen777.mysellauth.com"
     target="_blank"
-    class="product reveal"
 >
-
 <div class="product-image">
-
 <img
     src="https://i.imghippo.com/files/SD5663YEE.jpeg"
     alt="VOIP Numbers"
 >
-
 </div>
 
 <div class="product-content">
-
-<h3>
-    VOIP Numbers
-</h3>
-
-<p>
-    Numeri virtuali e relativi servizi
-    disponibili nello shop.
-</p>
-
-<div class="btn btn-red">
-    VAI ALLO SHOP →
+<h3>VOIP Numbers</h3>
+<p>Numeri virtuali disponibili nello Shop.</p>
+<span class="btn btn-red">APRI PRODOTTO ↗</span>
 </div>
-
-</div>
-
 </a>
 
 
-<!-- BOT -->
-
 <a
+    class="product glass"
     href="https://zen777.mysellauth.com"
     target="_blank"
-    class="product reveal"
 >
-
 <div class="product-image">
-
 <img
     src="https://i.imghippo.com/files/jbx5717Uw.jpeg"
     alt="WhatsApp Bot Full Custom"
 >
-
 </div>
 
 <div class="product-content">
-
-<h3>
-    WhatsApp Bot Full Custom
-</h3>
-
-<p>
-    Richiedi un bot completamente
-    personalizzato.
-</p>
-
-<div class="btn btn-red">
-    VAI ALLO SHOP →
+<h3>WhatsApp Bot Full Custom</h3>
+<p>Il tuo bot WhatsApp completamente personalizzato.</p>
+<span class="btn btn-red">APRI PRODOTTO ↗</span>
 </div>
-
-</div>
-
 </a>
 
 
-<!-- GRAFICHE -->
-
 <a
+    class="product glass"
     href="https://zen777.mysellauth.com"
     target="_blank"
-    class="product reveal"
 >
-
 <div class="product-image">
-
 <img
     src="https://i.imghippo.com/files/YqVB1016vyg.jpeg"
     alt="Grafiche Personalizzate"
 >
-
 </div>
 
 <div class="product-content">
-
-<h3>
-    Grafiche Personalizzate
-</h3>
-
-<p>
-    Realizzazione di grafiche custom
-    per i tuoi progetti.
-</p>
-
-<div class="btn btn-red">
-    VAI ALLO SHOP →
+<h3>Grafiche Personalizzate</h3>
+<p>Realizzazione di grafiche custom.</p>
+<span class="btn btn-red">APRI PRODOTTO ↗</span>
 </div>
-
-</div>
-
 </a>
 
 
-<!-- OSINT -->
-
 <a
+    class="product glass"
     href="https://zen777.mysellauth.com"
     target="_blank"
-    class="product reveal"
 >
-
 <div class="product-image">
-
 <img
     src="https://i.imghippo.com/files/zCS9616rYI.jpeg"
     alt="OSINT Method"
 >
-
 </div>
 
 <div class="product-content">
-
-<h3>
-    OSINT Method
-</h3>
-
-<p>
-    Visualizza prodotto e dettagli
-    nello shop ufficiale.
-</p>
-
-<div class="btn btn-red">
-    VAI ALLO SHOP →
+<h3>OSINT Method</h3>
+<p>Prodotto disponibile nello Shop ZEN777.</p>
+<span class="btn btn-red">APRI PRODOTTO ↗</span>
 </div>
-
-</div>
-
 </a>
-
-
-<!-- FOTO SHOP -->
-
-<a
-    href="https://zen777.mysellauth.com"
-    target="_blank"
-    class="product reveal"
->
-
-<div class="product-image">
-
-<img
-    src="https://i.imghippo.com/files/dHvt1882iuw.jpeg"
-    alt="ZEN Shop"
->
-
-</div>
-
-<div class="product-content">
-
-<h3>
-    Zen Shop
-</h3>
-
-<p>
-    Tutti i prodotti disponibili
-    nello shop ufficiale.
-</p>
-
-<div class="btn btn-red">
-    APRI SHOP →
-</div>
-
-</div>
-
-</a>
-
-
-</div>
 
 </div>
 
 </section>
 
-</main>
 
+<!-- =========================
+     REPORT VIEW
+========================= -->
 
-<!-- =========================================
-     REPORT MODAL
-========================================= -->
-
-<div
-    class="modal"
-    id="reportModal"
->
-
-<div class="modal-box">
+<div class="page-view" id="reportView">
 
 <button
-    class="back-button"
-    onclick="closeModal('reportModal')"
+    class="btn btn-dark back-button"
+    onclick="closeView('reportView')"
 >
-    ← TORNA INDIETRO
+    ← INDIETRO
 </button>
 
-<div class="modal-header">
+<div class="view-inner">
 
-<div>
+<div class="section-head">
 
-<h2>
-    ZEN Report
-</h2>
+<small>ZEN777 // REPORT SYSTEM</small>
+
+<h2>ZEN REPORT</h2>
 
 <p>
-    Compila la scheda e invia la segnalazione.
+Segnala un problema allo staff ZEN777.
+Puoi specificare la piattaforma interessata.
 </p>
 
 </div>
 
-<button
-    class="close"
-    onclick="closeModal('reportModal')"
->
-×
-</button>
-
-</div>
-
+<div class="form-card glass">
 
 <form id="reportForm">
 
-
 <div class="form-group">
 
-<label>
-    PIATTAFORMA
-</label>
+<label>PIATTAFORMA</label>
 
-<div class="platform-buttons">
+<div class="platforms">
 
 <button
     type="button"
-    class="platform-button"
+    class="platform"
     data-platform="WhatsApp"
-    onclick="selectPlatform(this)"
 >
-    WhatsApp
+WhatsApp
 </button>
 
 <button
     type="button"
-    class="platform-button"
+    class="platform"
     data-platform="Telegram"
-    onclick="selectPlatform(this)"
 >
-    Telegram
+Telegram
 </button>
 
 <button
     type="button"
-    class="platform-button"
+    class="platform"
     data-platform="Discord"
-    onclick="selectPlatform(this)"
 >
-    Discord
+Discord
 </button>
 
 </div>
@@ -3258,73 +2101,45 @@ all'acquisto.
 
 </div>
 
-
 <div class="form-group">
 
-<label id="targetLabel">
-    NUMERO / USERNAME
-</label>
+<label>NUMERO / USERNAME</label>
 
 <input
-    type="text"
     id="reportTarget"
-    placeholder="Seleziona prima la piattaforma"
     required
+    placeholder="Seleziona prima la piattaforma"
 >
 
 </div>
 
-
 <div class="form-group">
 
-<label>
-    CONTATTO
-</label>
+<label>CONTATTO</label>
 
 <input
-    type="text"
     id="reportContact"
     placeholder="Email o numero di telefono"
 >
 
-<div class="optional">
-Necessario se vuoi essere ricontattato.
 </div>
-
-</div>
-
 
 <div class="form-group">
 
-<label>
-    DESCRIZIONE DEL REPORT
-</label>
+<label>DESCRIZIONE</label>
 
 <textarea
     id="reportDescription"
-    placeholder="Spiega cosa è successo..."
     required
+    placeholder="Spiega dettagliatamente il problema..."
 ></textarea>
 
 </div>
 
-
-<label class="checkbox">
-
-<input
-    type="checkbox"
-    id="anonymous"
->
-
-Invia il report in modo anonimo
-
-</label>
-
-
 <button
     type="submit"
     class="btn btn-red"
-    style="width:100%;"
+    style="width:100%"
 >
     INVIA REPORT
 </button>
@@ -3335,159 +2150,110 @@ Invia il report in modo anonimo
 
 </div>
 
+</div>
 
-<!-- =========================================
-     SPONSOR MODAL
-========================================= -->
 
-<div
-    class="modal"
-    id="sponsorModal"
->
+<!-- =========================
+     SPONSOR VIEW
+========================= -->
 
-<div class="modal-box">
+<div class="page-view" id="sponsorView">
 
 <button
-    class="back-button"
-    onclick="closeModal('sponsorModal')"
+    class="btn btn-dark back-button"
+    onclick="closeView('sponsorView')"
 >
-    ← TORNA INDIETRO
+    ← INDIETRO
 </button>
 
-<div class="modal-header">
+<div class="view-inner">
 
-<div>
+<div class="section-head">
 
-<h2>
-    ZEN Sponsor
-</h2>
+<small>ZEN777 // COLLABORATION SYSTEM</small>
+
+<h2>SPONSOR</h2>
 
 <p>
-    Invia una richiesta di collaborazione.
+Proponi una collaborazione, partnership,
+sponsorizzazione o pubblicità a ZEN777.
 </p>
 
 </div>
 
-<button
-    class="close"
-    onclick="closeModal('sponsorModal')"
->
-×
-</button>
-
-</div>
-
+<div class="form-card glass">
 
 <form id="sponsorForm">
 
-
 <div class="form-group">
 
-<label>
-    NOME / NICKNAME
-</label>
+<label>NOME / NICKNAME</label>
 
 <input
-    type="text"
     id="sponsorName"
-    placeholder="Il tuo nome o nickname"
     required
+    placeholder="Il tuo nome"
 >
 
 </div>
 
-
 <div class="form-group">
 
-<label>
-    COMMUNITY / PROGETTO
-</label>
+<label>COMMUNITY / PROGETTO</label>
 
 <input
-    type="text"
     id="sponsorCommunity"
-    placeholder="Nome della community o progetto"
     required
+    placeholder="Nome della community o progetto"
 >
 
 </div>
 
-
 <div class="form-group">
 
-<label>
-    TIPO DI RICHIESTA
-</label>
+<label>TIPO DI COLLABORAZIONE</label>
 
-<select
-    id="sponsorType"
-    required
->
+<select id="sponsorType" required>
 
-<option value="">
-Seleziona...
-</option>
-
-<option value="Sponsorizzazione">
-Sponsorizzazione
-</option>
-
-<option value="Collaborazione">
-Collaborazione
-</option>
-
-<option value="Pubblicità">
-Pubblicità
-</option>
-
-<option value="Partnership">
-Partnership
-</option>
-
-<option value="Altro">
-Altro
-</option>
+<option value="">Seleziona...</option>
+<option>Sponsorizzazione</option>
+<option>Collaborazione</option>
+<option>Partnership</option>
+<option>Pubblicità</option>
+<option>Altro</option>
 
 </select>
 
 </div>
 
-
 <div class="form-group">
 
-<label>
-    CONTATTO
-</label>
+<label>CONTATTO</label>
 
 <input
-    type="text"
     id="sponsorContact"
-    placeholder="Email o numero di telefono"
     required
+    placeholder="Email / WhatsApp / Telegram"
 >
 
 </div>
 
-
 <div class="form-group">
 
-<label>
-    DESCRIZIONE
-</label>
+<label>DESCRIZIONE</label>
 
 <textarea
     id="sponsorDescription"
-    placeholder="Descrivi la tua proposta..."
     required
+    placeholder="Descrivi la tua proposta..."
 ></textarea>
 
 </div>
 
-
 <button
     type="submit"
     class="btn btn-red"
-    style="width:100%;"
+    style="width:100%"
 >
     INVIA RICHIESTA
 </button>
@@ -3498,10 +2264,12 @@ Altro
 
 </div>
 
+</div>
 
-<!-- =========================================
-     MUSIC PLAYER
-========================================= -->
+
+<!-- =========================
+     MUSIC
+========================= -->
 
 <div class="music-player">
 
@@ -3510,7 +2278,7 @@ Altro
 <img
     class="player-cover"
     src="https://i.imghippo.com/files/dHvt1882iuw.jpeg"
-    alt="ZEN777 Music"
+    alt="ZEN Music"
 >
 
 <div class="player-info">
@@ -3534,13 +2302,9 @@ Altro
 
 </div>
 
-
 <div class="player-row">
 
-<span
-    class="time"
-    id="currentTime"
->
+<span class="time" id="currentTime">
 00:00
 </span>
 
@@ -3553,17 +2317,13 @@ Altro
     value="0"
 >
 
-<span
-    class="time"
-    id="duration"
->
+<span class="time" id="duration">
 00:00
 </span>
 
 </div>
 
 </div>
-
 
 <audio
     id="zenAudio"
@@ -3578,40 +2338,340 @@ Altro
 </audio>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     GLITCH
+========================= -->
+
+<div class="glitch-overlay" id="glitchOverlay">
+
+<div class="glitch-lines"></div>
+
+<div class="glitch-content">
+
+<div class="glitch-logo">
+    ZEN//HACKED
+</div>
+
+<div class="glitch-warning">
+    ⚠ SYSTEM COMPROMISED ⚠
+</div>
+
+<div class="glitch-message">
+    Veramente pensi che qualcuno sia riuscito
+    ad hackerare un sito di dryzen? 😂
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
-<strong>
-    𝐙𝐄𝐍𝟕𝟕𝟕 // 輝く時
-</strong>
+<strong>𝐙𝐄𝐍𝟕𝟕𝟕 // THE ZEN UNIVERSE</strong>
 
 <br><br>
 
-© 2026 ZEN777 — All rights reserved.
+THE SYSTEM IS WATCHING.
+
+<br><br>
+
+© 2026 ZEN777 — ALL RIGHTS RESERVED.
 
 </footer>
 
 
 <script>
 
-/* =========================================
-   MUSIC PLAYER
-========================================= */
+/* =========================
+   STARS
+========================= */
 
-const audio =
+const stars = document.getElementById("stars");
+
+for(let i=0;i<130;i++){
+
+    const star=document.createElement("span");
+
+    star.className="star";
+
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+    star.style.animationDelay=(Math.random()*4)+"s";
+
+    stars.appendChild(star);
+}
+
+
+/* =========================
+   CURSOR
+========================= */
+
+const cursorGlow =
+    document.getElementById("cursorGlow");
+
+document.addEventListener("mousemove",(e)=>{
+
+    cursorGlow.style.left=e.clientX+"px";
+    cursorGlow.style.top=e.clientY+"px";
+
+});
+
+
+/* =========================
+   EYE TRACKING
+========================= */
+
+const eye =
+    document.getElementById("zenEye");
+
+const iris =
+    document.getElementById("iris");
+
+document.addEventListener("mousemove",(e)=>{
+
+    if(!eye) return;
+
+    const rect=eye.getBoundingClientRect();
+
+    const eyeX=rect.left+rect.width/2;
+    const eyeY=rect.top+rect.height/2;
+
+    let dx=e.clientX-eyeX;
+    let dy=e.clientY-eyeY;
+
+    const distance=Math.sqrt(dx*dx+dy*dy);
+
+    const max=38;
+
+    if(distance>max){
+
+        dx=(dx/distance)*max;
+        dy=(dy/distance)*max;
+
+    }
+
+    iris.style.transform=
+        `translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px))`;
+
+});
+
+
+/* =========================
+   MIRROR
+========================= */
+
+function activateMirror(){
+
+    const mirror=
+        document.getElementById("mirror");
+
+    mirror.classList.toggle("open");
+
+    if(mirror.classList.contains("open")){
+
+        setTimeout(()=>{
+
+            alert(
+                "ALTER EGO ZEN // CONNECTION ESTABLISHED"
+            );
+
+        },500);
+
+    }
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function goTo(id){
+
+    document
+        .getElementById(id)
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+function openView(id){
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    document.body.style.overflow="hidden";
+
+}
+
+
+function closeView(id){
+
+    document
+        .getElementById(id)
+        .classList.remove("active");
+
+    document.body.style.overflow="";
+
+}
+
+
+/* =========================
+   PLATFORM
+========================= */
+
+document
+.querySelectorAll(".platform")
+.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        document
+        .querySelectorAll(".platform")
+        .forEach(b=>b.classList.remove("active"));
+
+        button.classList.add("active");
+
+        document
+        .getElementById("reportPlatform")
+        .value=button.dataset.platform;
+
+        const target=
+            document.getElementById("reportTarget");
+
+        if(button.dataset.platform==="WhatsApp"){
+            target.placeholder="+39 123 456 7890";
+        }
+
+        if(button.dataset.platform==="Telegram"){
+            target.placeholder="@username";
+        }
+
+        if(button.dataset.platform==="Discord"){
+            target.placeholder="username";
+        }
+
+    });
+
+});
+
+
+/* =========================
+   REPORT
+========================= */
+
+document
+.getElementById("reportForm")
+.addEventListener("submit",(e)=>{
+
+    e.preventDefault();
+
+    const report={
+
+        platform:
+            document.getElementById("reportPlatform").value,
+
+        target:
+            document.getElementById("reportTarget").value,
+
+        contact:
+            document.getElementById("reportContact").value,
+
+        description:
+            document.getElementById("reportDescription").value,
+
+        created_at:
+            new Date().toISOString()
+
+    };
+
+    console.log("ZEN REPORT",report);
+
+    alert(
+        "REPORT CREATO ✓\n\nIl sistema Supabase verrà collegato nel prossimo passaggio."
+    );
+
+    e.target.reset();
+
+    document
+    .querySelectorAll(".platform")
+    .forEach(b=>b.classList.remove("active"));
+
+    closeView("reportView");
+
+});
+
+
+/* =========================
+   SPONSOR
+========================= */
+
+document
+.getElementById("sponsorForm")
+.addEventListener("submit",(e)=>{
+
+    e.preventDefault();
+
+    const sponsor={
+
+        name:
+            document.getElementById("sponsorName").value,
+
+        community:
+            document.getElementById("sponsorCommunity").value,
+
+        type:
+            document.getElementById("sponsorType").value,
+
+        contact:
+            document.getElementById("sponsorContact").value,
+
+        description:
+            document.getElementById("sponsorDescription").value,
+
+        created_at:
+            new Date().toISOString()
+
+    };
+
+    console.log("ZEN SPONSOR",sponsor);
+
+    alert(
+        "RICHIESTA INVIATA ✓\n\nIl sistema Supabase verrà collegato nel prossimo passaggio."
+    );
+
+    e.target.reset();
+
+    closeView("sponsorView");
+
+});
+
+
+/* =========================
+   MUSIC PLAYER
+========================= */
+
+const audio=
     document.getElementById("zenAudio");
 
-const playButton =
+const playButton=
     document.getElementById("playButton");
 
-const progress =
+const progress=
     document.getElementById("progress");
 
-const currentTime =
+const currentTime=
     document.getElementById("currentTime");
 
-const duration =
+const duration=
     document.getElementById("duration");
 
 
@@ -3621,37 +2681,26 @@ function formatTime(seconds){
         return "00:00";
     }
 
-    const minutes =
-        Math.floor(seconds / 60);
+    const min=
+        Math.floor(seconds/60);
 
-    const secondsLeft =
-        Math.floor(seconds % 60);
+    const sec=
+        Math.floor(seconds%60);
 
-    return String(minutes).padStart(2,"0")
-        + ":"
-        + String(secondsLeft).padStart(2,"0");
+    return String(min).padStart(2,"0")
+        +":"
+        +String(sec).padStart(2,"0");
+
 }
 
 
-playButton.addEventListener(
-    "click",
-    async function(){
+playButton.addEventListener("click",async()=>{
+
+    try{
 
         if(audio.paused){
 
-            try{
-
-                await audio.play();
-
-                playButton.textContent = "Ⅱ";
-
-            }catch(error){
-
-                alert(
-                    "Il file audio non è disponibile. Controlla la cartella audio."
-                );
-
-            }
+            await audio.play();
 
         }else{
 
@@ -3659,461 +2708,162 @@ playButton.addEventListener(
 
         }
 
-    }
-);
+    }catch(error){
 
-
-audio.addEventListener(
-    "play",
-    function(){
-
-        playButton.textContent = "Ⅱ";
-
-    }
-);
-
-
-audio.addEventListener(
-    "pause",
-    function(){
-
-        playButton.textContent = "▶";
-
-    }
-);
-
-
-audio.addEventListener(
-    "loadedmetadata",
-    function(){
-
-        duration.textContent =
-            formatTime(audio.duration);
-
-    }
-);
-
-
-audio.addEventListener(
-    "timeupdate",
-    function(){
-
-        currentTime.textContent =
-            formatTime(audio.currentTime);
-
-        if(audio.duration){
-
-            progress.value =
-                (
-                    audio.currentTime /
-                    audio.duration
-                ) * 100;
-
-        }
-
-    }
-);
-
-
-progress.addEventListener(
-    "input",
-    function(){
-
-        if(!audio.duration){
-            return;
-        }
-
-        audio.currentTime =
-            (
-                progress.value / 100
-            ) * audio.duration;
-
-    }
-);
-
-
-/* =========================================
-   MODALS
-========================================= */
-
-function openModal(id){
-
-    document
-        .getElementById(id)
-        .classList.add("active");
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-function closeModal(id){
-
-    document
-        .getElementById(id)
-        .classList.remove("active");
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-document
-    .querySelectorAll(".modal")
-    .forEach(function(modal){
-
-        modal.addEventListener(
-            "click",
-            function(event){
-
-                if(event.target === modal){
-
-                    closeModal(modal.id);
-
-                }
-
-            }
+        alert(
+            "Non riesco a leggere l'MP3. Controlla che il file sia nella cartella audio."
         );
 
-    });
-
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Escape"){
-
-            document
-                .querySelectorAll(".modal.active")
-                .forEach(function(modal){
-
-                    closeModal(modal.id);
-
-                });
-
-        }
+        console.error(error);
 
     }
-);
+
+});
 
 
-/* =========================================
-   PLATFORM SELECT
-========================================= */
+audio.addEventListener("play",()=>{
 
-function selectPlatform(button){
+    playButton.textContent="Ⅱ";
 
-    document
-        .querySelectorAll(".platform-button")
-        .forEach(function(btn){
+});
 
-            btn.classList.remove("active");
+audio.addEventListener("pause",()=>{
+
+    playButton.textContent="▶";
+
+});
+
+audio.addEventListener("loadedmetadata",()=>{
+
+    duration.textContent=
+        formatTime(audio.duration);
+
+});
+
+audio.addEventListener("timeupdate",()=>{
+
+    currentTime.textContent=
+        formatTime(audio.currentTime);
+
+    if(audio.duration){
+
+        progress.value=
+            (audio.currentTime/audio.duration)*100;
+
+    }
+
+});
+
+progress.addEventListener("input",()=>{
+
+    if(audio.duration){
+
+        audio.currentTime=
+            (progress.value/100)*audio.duration;
+
+    }
+
+});
+
+
+/* =========================
+   ZEN GLITCH
+========================= */
+
+const glitchOverlay=
+    document.getElementById("glitchOverlay");
+
+let glitchRunning=false;
+
+function startGlitch(){
+
+    if(glitchRunning) return;
+
+    glitchRunning=true;
+
+    glitchOverlay.classList.add("active");
+
+    setTimeout(()=>{
+
+        glitchOverlay.classList.remove("active");
+
+        glitchRunning=false;
+
+    },7000);
+
+}
+
+
+/*
+    Il glitch appare casualmente.
+    Prima attivazione dopo circa 35 secondi.
+*/
+
+setTimeout(()=>{
+
+    startGlitch();
+
+},35000);
+
+
+/*
+    Successivamente può ricomparire
+    casualmente ogni 60-120 secondi.
+*/
+
+setInterval(()=>{
+
+    if(Math.random()<0.45){
+
+        startGlitch();
+
+    }
+
+},90000);
+
+
+/* =========================
+   KEYBOARD
+========================= */
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Escape"){
+
+        document
+        .querySelectorAll(".page-view.active")
+        .forEach(view=>{
+
+            closeView(view.id);
 
         });
 
-    button.classList.add("active");
-
-    const platform =
-        button.dataset.platform;
-
-    document
-        .getElementById("reportPlatform")
-        .value = platform;
-
-    const target =
-        document.getElementById(
-            "reportTarget"
-        );
-
-    const label =
-        document.getElementById(
-            "targetLabel"
-        );
-
-
-    if(platform === "WhatsApp"){
-
-        label.textContent =
-            "NUMERO WHATSAPP";
-
-        target.placeholder =
-            "+39 123 456 7890";
-
     }
 
+});
 
-    if(platform === "Telegram"){
 
-        label.textContent =
-            "USERNAME TELEGRAM";
+/* =========================
+   PARALLAX UNIVERSE
+========================= */
 
-        target.placeholder =
-            "@username";
+const universe=
+    document.querySelector(".universe");
 
-    }
+document.addEventListener("mousemove",(e)=>{
 
+    if(window.innerWidth<700) return;
 
-    if(platform === "Discord"){
+    const x=
+        (e.clientX/window.innerWidth-.5);
 
-        label.textContent =
-            "USERNAME DISCORD";
+    const y=
+        (e.clientY/window.innerHeight-.5);
 
-        target.placeholder =
-            "username oppure username#0000";
+    universe.style.transform=
+        `translate(${x*-10}px,${y*-10}px)`;
 
-    }
-
-}
-
-
-/* =========================================
-   REPORT
-========================================= */
-
-document
-    .getElementById("reportForm")
-    .addEventListener(
-        "submit",
-        function(event){
-
-            event.preventDefault();
-
-            const report = {
-
-                platform:
-                    document
-                    .getElementById(
-                        "reportPlatform"
-                    ).value,
-
-                target:
-                    document
-                    .getElementById(
-                        "reportTarget"
-                    ).value,
-
-                contact:
-                    document
-                    .getElementById(
-                        "reportContact"
-                    ).value,
-
-                description:
-                    document
-                    .getElementById(
-                        "reportDescription"
-                    ).value,
-
-                anonymous:
-                    document
-                    .getElementById(
-                        "anonymous"
-                    ).checked,
-
-                created_at:
-                    new Date().toISOString()
-
-            };
-
-
-            console.log(
-                "ZEN REPORT:",
-                report
-            );
-
-
-            alert(
-                "Report compilato correttamente."
-            );
-
-
-            closeModal(
-                "reportModal"
-            );
-
-            this.reset();
-
-            document
-                .querySelectorAll(
-                    ".platform-button"
-                )
-                .forEach(function(btn){
-
-                    btn.classList.remove(
-                        "active"
-                    );
-
-                });
-
-        }
-    );
-
-
-/* =========================================
-   SPONSOR
-========================================= */
-
-document
-    .getElementById("sponsorForm")
-    .addEventListener(
-        "submit",
-        function(event){
-
-            event.preventDefault();
-
-            const sponsor = {
-
-                name:
-                    document
-                    .getElementById(
-                        "sponsorName"
-                    ).value,
-
-                community:
-                    document
-                    .getElementById(
-                        "sponsorCommunity"
-                    ).value,
-
-                type:
-                    document
-                    .getElementById(
-                        "sponsorType"
-                    ).value,
-
-                contact:
-                    document
-                    .getElementById(
-                        "sponsorContact"
-                    ).value,
-
-                description:
-                    document
-                    .getElementById(
-                        "sponsorDescription"
-                    ).value,
-
-                created_at:
-                    new Date().toISOString()
-
-            };
-
-
-            console.log(
-                "ZEN SPONSOR:",
-                sponsor
-            );
-
-
-            alert(
-                "Richiesta di collaborazione compilata correttamente."
-            );
-
-
-            closeModal(
-                "sponsorModal"
-            );
-
-            this.reset();
-
-        }
-    );
-
-
-/* =========================================
-   SCROLL REVEAL
-========================================= */
-
-const revealObserver =
-    new IntersectionObserver(
-        function(entries){
-
-            entries.forEach(
-                function(entry){
-
-                    if(entry.isIntersecting){
-
-                        entry.target
-                            .classList
-                            .add("show");
-
-                        revealObserver
-                            .unobserve(
-                                entry.target
-                            );
-
-                    }
-
-                }
-            );
-
-        },
-        {
-            threshold:.12
-        }
-    );
-
-
-document
-    .querySelectorAll(".reveal")
-    .forEach(function(element){
-
-        revealObserver.observe(
-            element
-        );
-
-    });
-
-
-/* =========================================
-   SMOOTH NAV
-========================================= */
-
-document
-    .querySelectorAll(
-        'a[href^="#"]'
-    )
-    .forEach(function(link){
-
-        link.addEventListener(
-            "click",
-            function(event){
-
-                const targetId =
-                    this.getAttribute(
-                        "href"
-                    );
-
-                if(
-                    targetId &&
-                    targetId !== "#"
-                ){
-
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
-
-                    if(target){
-
-                        event.preventDefault();
-
-                        target.scrollIntoView({
-                            behavior:"smooth",
-                            block:"start"
-                        });
-
-                    }
-
-                }
-
-            }
-        );
-
-    });
+});
 
 </script>
 
